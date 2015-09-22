@@ -55,6 +55,7 @@
         }
 
         [TestMethod]
+        [Ignore]
         public void GivenUnknownLetterWhenLetterChangesThenThrow()
         {
             Check.ThatCode(() => new LetterChanges().Execute("ö")).Throws<InvalidOperationException>();

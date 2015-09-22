@@ -1,10 +1,12 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
+    using Tools;
+
     public class OtherSymbolTranslator : ISymbolTranslator
     {
         public bool CanTranslate(string symbol)
         {
-            return !char.IsLetter(symbol[0]);
+            return !symbol.IsLetter();
         }
 
         public string Translate(string symbol)

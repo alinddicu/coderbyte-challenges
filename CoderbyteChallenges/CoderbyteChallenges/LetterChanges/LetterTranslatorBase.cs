@@ -19,9 +19,9 @@
             return _array[index + 1];
         }
 
-        protected bool ContainsLetter(string letter)
+        protected bool Contains(string letter)
         {
-            return char.IsLetter(letter[0]) && _array.FirstIndexOf(letter) > -1;
+            return letter.IsLetter() && _array.FirstIndexOf(letter) > -1;
         }
     }
 }

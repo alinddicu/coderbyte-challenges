@@ -9,7 +9,7 @@
         [TestMethod]
         public void WhenToArrayOfStringsThenReturnArrayOfStrings()
         {
-            var str = "abc";
+            const string str = "abc";
 
             var arrayOfStrings = str.ToArrayOfStrings();
 

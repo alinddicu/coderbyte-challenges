@@ -31,26 +31,29 @@
             return returnString;
         }
 
-        private static string GetNextLetter(string letter)
+        private static string GetNextLetter(string symbol)
         {
-            if (letter == "z")
+            if (!char.IsLetter(symbol[0]))
+            {
+                return symbol;
+            }
+
+            if (symbol == "z")
             {
                 return "a";
             }
 
-            if (letter == "Z")
+            if (symbol == "Z")
             {
                 return "A";
             }
 
-            try
+            if (char.IsUpper(symbol[0]))
             {
-                return LettersLowerCase[GetIndex(LettersLowerCase, letter) + 1];
+                return LettersCapitalCase[GetIndex(LettersCapitalCase, symbol) + 1];
             }
-            catch (InvalidOperationException)
-            {
-                return LettersCapitalCase[GetIndex(LettersCapitalCase, letter) + 1];
-            }
+
+            return LettersLowerCase[GetIndex(LettersLowerCase, symbol) + 1];
         }
 
         private static int GetIndex(string[] letters, string letter)
@@ -63,10 +66,10 @@
                 }
             }
 
-            throw new InvalidOperationException("Letter not found : " + letter);
+            throw new InvalidOperationException("Unknown letter : " + letter);
         }
 
-        private string CapitalizeVowels(string str)
+        private static string CapitalizeVowels(string str)
         {
             throw new NotImplementedException();
         }

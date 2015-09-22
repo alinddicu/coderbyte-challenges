@@ -19,7 +19,6 @@
          */
 
         [TestMethod]
-        [Ignore]
         public void GivenHello3WhenLetterChangesThenReturnIfmmp3()
         {
             var result = new LetterChanges().Execute("Hello3");

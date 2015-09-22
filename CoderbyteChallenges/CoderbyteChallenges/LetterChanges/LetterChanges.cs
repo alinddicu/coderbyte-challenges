@@ -14,6 +14,7 @@
         {
             _letterTranslators = new ILetterTranslator[]
             {
+                new NonLetterTranslator(), 
                 new LowerCaseLetterTranslator(LettersLowerCase), 
                 new UpperCaseLetterTranslator(LettersCapitalCase)
             };
@@ -41,14 +42,7 @@
 
         private string GetNextLetter(string symbol)
         {
-            if (!char.IsLetter(symbol[0]))
-            {
-                return symbol;
-            }
-
-            var translator = _letterTranslators.Single(o => o.CanTranslate(symbol));
-
-            return translator.Translate(symbol);
+            return _letterTranslators.Single(o => o.CanTranslate(symbol)).Translate(symbol);
         }
 
         private static string CapitalizeVowels(string initString)

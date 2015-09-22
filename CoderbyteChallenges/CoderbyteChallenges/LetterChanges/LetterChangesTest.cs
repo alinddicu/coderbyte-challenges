@@ -1,6 +1,7 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
     using System;
+    using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -55,10 +56,9 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void GivenUnknownLetterWhenLetterChangesThenThrow()
         {
-            Check.ThatCode(() => new LetterChanges().Execute("ö")).Throws<InvalidOperationException>();
+            Check.ThatCode(() => new LetterChanges().Execute("ö")).Throws<InvalidDataException>();
         }
     }
 }

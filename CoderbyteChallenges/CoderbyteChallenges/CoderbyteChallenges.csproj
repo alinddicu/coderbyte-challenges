@@ -60,7 +60,7 @@
     <Compile Include="LetterChanges\ISymbolTranslator.cs" />
     <Compile Include="LetterChanges\LetterTranslatorBase.cs" />
     <Compile Include="LetterChanges\LowerCaseLetterTranslator.cs" />
-    <Compile Include="LetterChanges\NonLetterTranslator.cs" />
+    <Compile Include="LetterChanges\OtherSymbolTranslator.cs" />
     <Compile Include="LetterChanges\UpperCaseLetterTranslator.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />

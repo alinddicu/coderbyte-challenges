@@ -1,5 +1,6 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
+    using System.IO;
     using System.Linq;
 
     public class LetterChanges
@@ -14,7 +15,7 @@
         {
             _letterTranslators = new ISymbolTranslator[]
             {
-                new NonLetterTranslator(), 
+                new OtherSymbolTranslator(), 
                 new LowerCaseLetterTranslator(LettersLowerCase), 
                 new UpperCaseLetterTranslator(LettersCapitalCase)
             };
@@ -42,7 +43,14 @@
 
         private string GetNextLetter(string symbol)
         {
-            return _letterTranslators.Single(o => o.CanTranslate(symbol)).Translate(symbol);
+            var translator = _letterTranslators.SingleOrDefault(o => o.CanTranslate(symbol));
+
+            if (translator == null)
+            {
+                throw new InvalidDataException("Letter not found : " + symbol);
+            }
+
+            return translator.Translate(symbol);
         }
 
         private static string CapitalizeVowels(string initString)

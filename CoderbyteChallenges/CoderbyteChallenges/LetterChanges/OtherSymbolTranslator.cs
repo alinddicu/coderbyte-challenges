@@ -1,6 +1,6 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
-    public class NonLetterTranslator : ISymbolTranslator
+    public class OtherSymbolTranslator : ISymbolTranslator
     {
         public bool CanTranslate(string symbol)
         {

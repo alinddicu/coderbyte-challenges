@@ -9,7 +9,7 @@
 
         public override bool CanTranslate(string symbol)
         {
-            return char.IsLetter(symbol[0]) && char.IsUpper(symbol[0]);
+            return char.IsUpper(symbol[0]) && ContainsLetter(symbol);
         }
     }
 }

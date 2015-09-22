@@ -18,5 +18,10 @@
             var index = _array.FirstIndexOf(symbol);
             return _array[index + 1];
         }
+
+        protected bool ContainsLetter(string letter)
+        {
+            return char.IsLetter(letter[0]) && _array.FirstIndexOf(letter) > -1;
+        }
     }
 }

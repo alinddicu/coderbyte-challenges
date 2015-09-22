@@ -53,6 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FirstFactorial.cs" />
+    <Compile Include="FirstFactorialTest.cs" />
     <Compile Include="FirstReverse.cs" />
     <Compile Include="FirstReverseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

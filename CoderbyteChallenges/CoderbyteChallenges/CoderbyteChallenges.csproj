@@ -57,6 +57,8 @@
     <Compile Include="FirstFactorialTest.cs" />
     <Compile Include="FirstReverse.cs" />
     <Compile Include="FirstReverseTest.cs" />
+    <Compile Include="LetterChanges.cs" />
+    <Compile Include="LetterChangesTest.cs" />
     <Compile Include="LongestWord.cs" />
     <Compile Include="LongestWordTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -57,8 +57,8 @@
     <Compile Include="FirstFactorialTest.cs" />
     <Compile Include="FirstReverse.cs" />
     <Compile Include="FirstReverseTest.cs" />
-    <Compile Include="LetterChanges\CircularArray.cs" />
-    <Compile Include="LetterChanges\CircularArrayTest.cs" />
+    <Compile Include="Tools\CircularArray.cs" />
+    <Compile Include="Tools\CircularArrayTest.cs" />
     <Compile Include="LetterChanges\LetterChanges.cs" />
     <Compile Include="LetterChanges\LetterChangesTest.cs" />
     <Compile Include="LongestWord.cs" />

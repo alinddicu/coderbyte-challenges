@@ -5,9 +5,9 @@
 
     public class LetterChanges
     {
-        public static readonly string[] LettersLowerCase = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-        public static readonly string[] LettersCapitalCase = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        public static readonly string[] Vowels = { "a", "e", "i", "o", "u" };
+        private static readonly string[] LettersLowerCase = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        private static readonly string[] LettersCapitalCase = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+        private static readonly string[] Vowels = { "a", "e", "i", "o", "u" };
 
         public string Execute(string str)
         {
@@ -46,12 +46,7 @@
                 return "A";
             }
 
-            if (char.IsUpper(symbol[0]))
-            {
-                return LettersCapitalCase[GetIndex(LettersCapitalCase, symbol) + 1];
-            }
-
-            return LettersLowerCase[GetIndex(LettersLowerCase, symbol) + 1];
+            return char.IsUpper(symbol[0]) ? LettersCapitalCase[GetIndex(LettersCapitalCase, symbol) + 1] : LettersLowerCase[GetIndex(LettersLowerCase, symbol) + 1];
         }
 
         private static int GetIndex(string[] letters, string letter)

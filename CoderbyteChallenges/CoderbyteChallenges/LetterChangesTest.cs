@@ -34,5 +34,13 @@
 
             Check.That(result).IsEqualTo("if");
         }
+
+        [TestMethod]
+        public void GivenHeWhenLetterChangesThenReturnIf()
+        {
+            var result = new LetterChanges().Execute("He");
+
+            Check.That(result).IsEqualTo("If");
+        }
     }
 }

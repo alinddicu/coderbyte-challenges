@@ -1,4 +1,4 @@
-﻿namespace CoderbyteChallenges
+﻿namespace CoderbyteChallenges.LetterChanges
 {
     using System;
     using System.Linq;

@@ -15,5 +15,16 @@
 
             Check.That(arrayOfStrings).ContainsExactly(new[] { "a", "b", "c" });
         }
+
+        [TestMethod]
+        public void CheckIsLetter()
+        {
+            Check.That("a".IsLetter()).IsTrue();
+            Check.That("1".IsLetter()).IsFalse();
+            Check.That("*".IsLetter()).IsFalse();
+            Check.That("ab".IsLetter()).IsFalse();
+            Check.That("1b".IsLetter()).IsFalse();
+            Check.That("".IsLetter()).IsFalse();
+        }
     }
 }

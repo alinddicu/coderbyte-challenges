@@ -2,6 +2,7 @@
 {
     using System.IO;
     using System.Linq;
+    using Tools;
 
     public class LetterChanges
     {
@@ -31,7 +32,7 @@
 
         private string Translate(string initString)
         {
-            var letters = initString.ToArray().Select(c => c + string.Empty);
+            var letters = initString.ToArrayOfStrings();
             var returnString = string.Empty;
             foreach (var letter in letters)
             {
@@ -44,7 +45,6 @@
         private string GetNextLetter(string symbol)
         {
             var translator = _letterTranslators.SingleOrDefault(o => o.CanTranslate(symbol));
-
             if (translator == null)
             {
                 throw new InvalidDataException("Letter not found : " + symbol);
@@ -55,7 +55,7 @@
 
         private static string CapitalizeVowels(string initString)
         {
-            var letters = initString.ToArray().Select(c => c + string.Empty);
+            var letters = initString.ToArrayOfStrings();
             var returnString = string.Empty;
             foreach (var letter in letters)
             {

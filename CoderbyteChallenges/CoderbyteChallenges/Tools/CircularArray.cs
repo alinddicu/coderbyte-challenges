@@ -22,5 +22,10 @@
                 _list[index] = value;
             }
         }
+
+        public int FirstIndexOf(T item)
+        {
+            return _list.IndexOf(item);
+        }
     }
 }

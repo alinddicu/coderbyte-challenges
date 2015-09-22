@@ -1,6 +1,7 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class LetterChanges
@@ -46,12 +47,14 @@
                 return "A";
             }
 
-            return char.IsUpper(symbol[0]) ? LettersCapitalCase[GetIndex(LettersCapitalCase, symbol) + 1] : LettersLowerCase[GetIndex(LettersLowerCase, symbol) + 1];
+            return char.IsUpper(symbol[0]) 
+                ? LettersCapitalCase[GetIndex(LettersCapitalCase, symbol) + 1] 
+                : LettersLowerCase[GetIndex(LettersLowerCase, symbol) + 1];
         }
 
-        private static int GetIndex(string[] letters, string letter)
+        private static int GetIndex(IList<string> letters, string letter)
         {
-            for (var index = 0; index < letters.Length; index++)
+            for (var index = 0; index < letters.Count; index++)
             {
                 if (letter == letters[index])
                 {

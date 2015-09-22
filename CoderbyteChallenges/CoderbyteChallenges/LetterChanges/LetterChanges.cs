@@ -8,11 +8,11 @@
         private static readonly string[] LettersCapitalCase = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         private static readonly string[] Vowels = { "a", "e", "i", "o", "u" };
 
-        private readonly ILetterTranslator[] _letterTranslators;
+        private readonly ISymbolTranslator[] _letterTranslators;
 
         public LetterChanges()
         {
-            _letterTranslators = new ILetterTranslator[]
+            _letterTranslators = new ISymbolTranslator[]
             {
                 new NonLetterTranslator(), 
                 new LowerCaseLetterTranslator(LettersLowerCase), 

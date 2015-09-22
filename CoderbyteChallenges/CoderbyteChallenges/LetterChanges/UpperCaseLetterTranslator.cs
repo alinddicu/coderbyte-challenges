@@ -1,25 +1,15 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
-    using Tools;
-
-    public class UpperCaseLetterTranslator : ILetterTranslator
+    public class UpperCaseLetterTranslator : LetterTranslatorBase
     {
-        private readonly CircularArray<string> _array;
-
         public UpperCaseLetterTranslator(string[] letters)
+            : base(letters)
         {
-            _array = new CircularArray<string>(letters);
         }
 
-        public bool CanTranslate(string letter)
+        public override bool CanTranslate(string symbol)
         {
-            return char.IsLetter(letter[0]) && char.IsUpper(letter[0]);
-        }
-
-        public string Translate(string letter)
-        {
-            var index = _array.FirstIndexOf(letter);
-            return _array[index+1];
+            return char.IsLetter(symbol[0]) && char.IsUpper(symbol[0]);
         }
     }
 }

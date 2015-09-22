@@ -57,7 +57,8 @@
     <Compile Include="FirstFactorialTest.cs" />
     <Compile Include="FirstReverse.cs" />
     <Compile Include="FirstReverseTest.cs" />
-    <Compile Include="LetterChanges\ILetterTranslator.cs" />
+    <Compile Include="LetterChanges\ISymbolTranslator.cs" />
+    <Compile Include="LetterChanges\LetterTranslatorBase.cs" />
     <Compile Include="LetterChanges\LowerCaseLetterTranslator.cs" />
     <Compile Include="LetterChanges\NonLetterTranslator.cs" />
     <Compile Include="LetterChanges\UpperCaseLetterTranslator.cs" />

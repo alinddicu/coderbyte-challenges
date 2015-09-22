@@ -1,15 +1,15 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
-    public class NonLetterTranslator : ILetterTranslator
+    public class NonLetterTranslator : ISymbolTranslator
     {
         public bool CanTranslate(string symbol)
         {
             return !char.IsLetter(symbol[0]);
         }
 
-        public string Translate(string letter)
+        public string Translate(string symbol)
         {
-            return letter;
+            return symbol;
         }
     }
 }

@@ -31,7 +31,7 @@
         {
             var result = new LetterChanges().Execute("he");
 
-            Check.That(result).IsEqualTo("if");
+            Check.That(result).IsEqualTo("If");
         }
 
         [TestMethod]
@@ -40,6 +40,28 @@
             var result = new LetterChanges().Execute("He");
 
             Check.That(result).IsEqualTo("If");
+        }
+
+        [TestMethod]
+        public void GivenfuntimesWhenLetterChangesThenReturngvOUjnft()
+        {
+            var result = new LetterChanges().Execute("fun times!");
+
+            Check.That(result).IsEqualTo("gvO Ujnft!");
+        }
+
+        [TestMethod]
+        public void GivenZzWhenLetterChangesThenReturnAa()
+        {
+            var result = new LetterChanges().Execute("Zz");
+
+            Check.That(result).IsEqualTo("AA");
+        }
+
+        [TestMethod]
+        public void GivenUnknownLetterWhenLetterChangesThenThrow()
+        {
+            Check.ThatCode(() => new LetterChanges().Execute("ö")).Throws<InvalidOperationException>();
         }
     }
 }

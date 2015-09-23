@@ -62,6 +62,8 @@
     <Compile Include="LetterChanges\LowerCaseLetterTranslator.cs" />
     <Compile Include="LetterChanges\OtherSymbolTranslator.cs" />
     <Compile Include="LetterChanges\UpperCaseLetterTranslator.cs" />
+    <Compile Include="SimpleAdding.cs" />
+    <Compile Include="SimpleAddingTest.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />
     <Compile Include="LetterChanges\LetterChanges.cs" />

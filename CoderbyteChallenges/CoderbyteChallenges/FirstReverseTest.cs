@@ -7,6 +7,12 @@
     [TestClass]
     public class FirstReverseTest
     {
+        /*
+         
+         For this challenge you will be reversing a string.
+         
+         */
+
         [TestMethod]
         public void GivenAbCWhenExecuteThenReturnCbA()
         {

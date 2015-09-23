@@ -6,6 +6,12 @@
     [TestClass]
     public class LongestWordTest
     {
+        /*
+         
+         For this challenge you will be determining the largest word in a string.
+         
+         */
+
         [TestMethod]
         public void Given1WordOf2And1WordOf3WhenLongestWordThenReturnTheWordOf3()
         {

@@ -6,6 +6,12 @@
     [TestClass]
     public class FirstFactorialTest
     {
+        /*
+         
+         For this challenge you will be determining the factorial for a given number.
+         
+         */
+
         [TestMethod]
         public void Given0WhenFactorialThenReturn1()
         {

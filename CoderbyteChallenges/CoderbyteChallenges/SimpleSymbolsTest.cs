@@ -42,5 +42,12 @@
             Check.ThatCode(() => new SimpleSymbols().Execute("0123456789")).Throws<InvalidDataException>();
             Check.ThatCode(() => new SimpleSymbols().Execute("&#'(-_)~#{[|`\\^@]}$£%µ*,;:!?./§<>")).Throws<InvalidDataException>();
         }
+
+        [TestMethod]
+        public void GivenPlusLetterPlusWhenSimpleSymbolsThenReturnTrue()
+        {
+            Check.That(new SimpleSymbols().Execute("+f+")).IsEqualTo("true");
+            Check.That(new SimpleSymbols().Execute("+a+")).IsEqualTo("true");
+        }
     }
 }

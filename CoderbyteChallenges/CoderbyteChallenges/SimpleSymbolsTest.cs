@@ -23,14 +23,12 @@
          */
 
         [TestMethod]
-        [Ignore]
         public void GivenInput1WhenSimpleSymbolsThenReturnTrue()
         {
             Check.That(new SimpleSymbols().Execute("+d+=3=+s+")).IsEqualTo("true");
         }
 
         [TestMethod]
-        [Ignore]
         public void GivenInput2WhenSimpleSymbolsThenReturnFalse()
         {
             Check.That(new SimpleSymbols().Execute("f++d+")).IsEqualTo("false");
@@ -39,7 +37,6 @@
         [TestMethod]
         public void GivenDisallowedCaractersWhenSimpleSymbolsThenThrow()
         {
-            Check.ThatCode(() => new SimpleSymbols().Execute("0123456789")).Throws<InvalidDataException>();
             Check.ThatCode(() => new SimpleSymbols().Execute("&#'(-_)~#{[|`\\^@]}$£%µ*,;:!?./§<>")).Throws<InvalidDataException>();
         }
 

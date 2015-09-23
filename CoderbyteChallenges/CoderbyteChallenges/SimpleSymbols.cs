@@ -27,7 +27,7 @@
                 throw new InvalidDataException("Input string has disallowed caracters");
             }
             
-            foreach (var index in GetIndexes(str))
+            foreach (var index in GetLetterIndexes(str))
             {
                 if (CheckLetterAtIndex(str, index) == ReturnFalse())
                 {
@@ -38,7 +38,7 @@
             return ReturnTrue();
         }
 
-        private IEnumerable<int> GetIndexes(string str)
+        private IEnumerable<int> GetLetterIndexes(string str)
         {
             var lastIndex = 0;
             foreach (var letter in str.ToArrayOfStrings())
@@ -55,12 +55,7 @@
 
         private string CheckLetterAtIndex(string str, int index)
         {
-            if (!HasPlusAtLeft(str, index))
-            {
-                return ReturnFalse();
-            }
-
-            if (!HasPlusAtRight(str, index))
+            if (!HasPlusAtLeft(str, index) || !HasPlusAtRight(str, index))
             {
                 return ReturnFalse();
             }
@@ -68,14 +63,14 @@
             return ReturnTrue();
         }
 
-        private bool HasPlusAtLeft(string str, int index)
+        private bool HasPlusAtLeft(string letter, int index)
         {
             if (index == 0)
             {
                 return false;
             }
 
-            if (str[index - 1] == '+')
+            if (letter[index - 1] == '+')
             {
                 return true;
             }
@@ -83,14 +78,14 @@
             return false;
         }
 
-        private bool HasPlusAtRight(string str, int index)
+        private bool HasPlusAtRight(string letter, int index)
         {
-            if (index == str.Length - 1)
+            if (index == letter.Length - 1)
             {
                 return false;
             }
 
-            if (str[index + 1] == '+')
+            if (letter[index + 1] == '+')
             {
                 return true;
             }

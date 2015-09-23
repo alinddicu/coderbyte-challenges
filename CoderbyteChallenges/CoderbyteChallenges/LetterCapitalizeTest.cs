@@ -26,7 +26,6 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void GivenhelloworldWhenExecuteThenReturnHelloWorld()
         {
             var result = new LetterCapitalize().Execute("hello world");

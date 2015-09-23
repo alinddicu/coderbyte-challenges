@@ -1,18 +1,21 @@
 ﻿namespace CoderbyteChallenges
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Tools;
 
     public class LetterCapitalize
     {
+        private static readonly string Delimiter = " ";
+
         public string Execute(string input)
         {
-            var words = input.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-            return string.Join(" ", words.Select(w => CapitalizeWord(w)));
+            var words = SplitIntoWords(input);
+            return string.Join(Delimiter, words.Select(w => CapitalizeWord(w)));
+        }
+
+        private static string[] SplitIntoWords(string input)
+        {
+            return input.Split(new[] { Delimiter }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static string CapitalizeWord(string word)

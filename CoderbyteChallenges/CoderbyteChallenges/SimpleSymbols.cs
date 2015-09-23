@@ -56,6 +56,11 @@
 
         private bool HasPlusAtLeft(string str, int index)
         {
+            if (index == 0)
+            {
+                return false;
+            }
+
             if (str[index - 1] == '+')
             {
                 return true;
@@ -66,6 +71,11 @@
 
         private bool HasPlusAtRight(string str, int index)
         {
+            if (index == str.Length - 1)
+            {
+                return false;
+            }
+
             if (str[index + 1] == '+')
             {
                 return true;

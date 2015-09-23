@@ -49,5 +49,17 @@
             Check.That(new SimpleSymbols().Execute("+f+")).IsEqualTo("true");
             Check.That(new SimpleSymbols().Execute("+a+")).IsEqualTo("true");
         }
+
+        [TestMethod]
+        public void GivenLetterPlusWhenSimpleSymbolsThenReturnFalse()
+        {
+            Check.That(new SimpleSymbols().Execute("f+")).IsEqualTo("false");
+        }
+
+        [TestMethod]
+        public void GivenPlusLetterWhenSimpleSymbolsThenReturnFalse()
+        {
+            Check.That(new SimpleSymbols().Execute("+f")).IsEqualTo("false");
+        }
     }
 }

@@ -22,10 +22,27 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void WhenLauraSpacesobsThenReturnFalse()
         {
             Check.That(new AbCheck().Execute("Laura sobs")).IsTrue();
+        }
+
+        [TestMethod]
+        public void Whena123bThenTrue()
+        {
+            Check.That(new AbCheck().Execute("a123b")).IsTrue();
+        }
+
+        [TestMethod]
+        public void Whena123dThenTrue()
+        {
+            Check.That(new AbCheck().Execute("a123d")).IsFalse();
+        }
+
+        [TestMethod]
+        public void When0a23a567b8ThenTrue()
+        {
+            Check.That(new AbCheck().Execute("0a23a567b9")).IsTrue();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace CoderbyteChallenges.Tools
 {
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -35,6 +36,13 @@
             Check.That("'".IndexesOf('a')).IsEmpty();
             Check.That("aa".IndexesOf('a')).ContainsExactly(new[] { 0, 1 });
             Check.That("aba".IndexesOf('a')).ContainsExactly(new[] { 0, 2 });
+        }
+
+        [TestMethod]
+        public void CheckJoinOnIenumerableOfString()
+        {
+            Check.That("ab".ToArrayOfStrings().Join(string.Empty)).IsEqualTo("ab");
+            Check.That("ab".ToArrayOfStrings().Join(", ")).IsEqualTo("a, b");
         }
     }
 }

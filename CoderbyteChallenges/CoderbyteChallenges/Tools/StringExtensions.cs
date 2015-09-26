@@ -23,5 +23,10 @@
                 .Where(g => g.Char == carac)
                 .Select(o => o.Index);
         }
+
+        public static string Join(this IEnumerable<string> str, string joinStr = "")
+        {
+            return string.Join(joinStr, str);
+        }
     }
 }

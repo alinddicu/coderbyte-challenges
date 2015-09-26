@@ -1,6 +1,5 @@
 ﻿namespace CoderbyteChallenges.LetterChanges
 {
-    using System;
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;

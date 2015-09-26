@@ -32,14 +32,10 @@
 
         private string Translate(string initString)
         {
-            var letters = initString.ToArrayOfStrings();
-            var returnString = string.Empty;
-            foreach (var letter in letters)
-            {
-                returnString += GetNextLetter(letter);
-            }
-
-            return returnString;
+            return initString
+                .ToArrayOfStrings()
+                .Select(GetNextLetter)
+                .Join();
         }
 
         private string GetNextLetter(string symbol)
@@ -55,10 +51,11 @@
 
         private static string CapitalizeVowels(string str)
         {
-            return string.Join(string.Empty, str
+            return str
                 .ToArrayOfStrings()
                 .Select(l => new {Letter = l, IsVowel = Vowels.Contains(l)})
-                .Select(o => o.IsVowel ? o.Letter.ToUpper() : o.Letter));
+                .Select(o => o.IsVowel ? o.Letter.ToUpper() : o.Letter)
+                .Join();
         }
     }
 }

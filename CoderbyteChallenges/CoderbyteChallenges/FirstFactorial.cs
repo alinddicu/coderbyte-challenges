@@ -10,7 +10,7 @@
             }
 
             var factorial = 1;
-            for (int countDown = n; countDown > 0; countDown--)
+            for (var countDown = n; countDown > 0; countDown--)
             {
                 factorial = factorial * countDown;
             }

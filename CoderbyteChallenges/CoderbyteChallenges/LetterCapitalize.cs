@@ -2,36 +2,29 @@
 {
     using System;
     using System.Linq;
+    using Tools;
 
     public class LetterCapitalize
     {
-        private static readonly string Delimiter = " ";
+        private const string Delimiter = " ";
 
         public string Execute(string input)
         {
-            var words = SplitIntoWords(input);
-            words = Capitalize(words);
-            return JoinCapitalized(words);
+            return input
+                .Split(new[] { Delimiter }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(w => new { FirstLetter = GetFirstLetterOfWord(w), RestOfWord = GetRestOfWord(w) })
+                .Select(o => (o.FirstLetter.ToUpper() + o.RestOfWord))
+                .Join(Delimiter);
         }
 
-        private static string[] SplitIntoWords(string input)
+        private static string GetRestOfWord(string w)
         {
-            return input.Split(new[] { Delimiter }, StringSplitOptions.RemoveEmptyEntries);
+            return w.Substring(1, w.Length - 1);
         }
 
-        private static string[] Capitalize(string[] words)
+        private static string GetFirstLetterOfWord(string w)
         {
-            return words.Select(w => Capitalize(w)).ToArray();
-        }
-
-        private static string Capitalize(string word)
-        {
-            return word.Substring(0, 1).ToUpper() + word.Remove(0, 1);
-        }
-
-        private static string JoinCapitalized(string[] words)
-        {
-            return string.Join(Delimiter, words);
+            return w.Substring(0, 1);
         }
     }
 }

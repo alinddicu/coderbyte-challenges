@@ -1,28 +1,16 @@
 ﻿namespace CoderbyteChallenges
 {
+    using System.Linq;
+    using Tools;
+
     public class FirstReverse
     {
-        public string Execute(string intialString)
+        public string Execute(string str)
         {
-            var reversedString = string.Empty;
-            var charArray = intialString.ToCharArray();
-
-            for (var index = GetLastCaracterPosition(charArray); HasMoreCaractersToReverse(index); index--)
-            {
-                reversedString += charArray[index];
-            }
-
-            return reversedString;
-        }
-
-        private static bool HasMoreCaractersToReverse(int index)
-        {
-            return index >= 0;
-        }
-
-        private static int GetLastCaracterPosition(char[] charArray)
-        {
-            return charArray.Length - 1;
+            return str
+                .ToArrayOfStrings()
+                .Reverse()
+                .Join();
         }
     }
 }

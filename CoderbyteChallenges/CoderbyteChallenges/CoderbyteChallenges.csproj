@@ -53,6 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AbCheck.cs" />
+    <Compile Include="AbCheckTest.cs" />
     <Compile Include="AlphabetSoup.cs" />
     <Compile Include="AlphabetSoupTest.cs" />
     <Compile Include="FirstFactorial.cs" />

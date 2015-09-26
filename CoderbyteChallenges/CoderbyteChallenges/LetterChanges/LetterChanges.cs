@@ -53,23 +53,12 @@
             return translator.Translate(symbol);
         }
 
-        private static string CapitalizeVowels(string initString)
+        private static string CapitalizeVowels(string str)
         {
-            var letters = initString.ToArrayOfStrings();
-            var returnString = string.Empty;
-            foreach (var letter in letters)
-            {
-                if (Vowels.Contains(letter.ToLower()))
-                {
-                    returnString += letter.ToUpper();
-                }
-                else
-                {
-                    returnString += letter;
-                }
-            }
-
-            return returnString;
+            return string.Join(string.Empty, str
+                .ToArrayOfStrings()
+                .Select(l => new {Letter = l, IsVowel = Vowels.Contains(l)})
+                .Select(o => o.IsVowel ? o.Letter.ToUpper() : o.Letter));
         }
     }
 }

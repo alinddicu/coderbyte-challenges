@@ -7,25 +7,17 @@
     {
         public bool Execute(string str)
         {
-            foreach (var indexOfA in GetIndexesOfA(str).ToArray())
-            {
-                var expectedIndexOfB = indexOfA + 4;
-                var indexOfB = str.IndexOf('b', indexOfA);
-                if (indexOfB == expectedIndexOfB)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return GetIndexesOfA(str)
+                .Select(index => str.IndexOf('b', index))
+                .Any(index => index % 4 == 0);
         }
 
         private static IEnumerable<int> GetIndexesOfA(string str)
         {
             return str
                 .ToCharArray()
-                .Select((x, i) => new { X = x, Index = i })
-                .Where(g => g.X == 'a')
+                .Select((x, i) => new { Char = x, Index = i })
+                .Where(g => g.Char == 'a')
                 .Select(o => o.Index);
         }
     }

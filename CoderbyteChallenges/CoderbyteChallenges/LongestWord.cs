@@ -1,26 +1,18 @@
 ﻿namespace CoderbyteChallenges
 {
+    using System;
+    using System.Linq;
+
     public class LongestWord
     {
         public string Execute(string phrase)
         {
-            var words = phrase.Split(' ');
-
-            var longestWord = string.Empty;
-            foreach(var word in words)
-            {
-                if (IsNotLongestWord(longestWord, word))
-                {
-                    longestWord = word;
-                }
-            }
-
-            return longestWord;
-        }
-
-        private static bool IsNotLongestWord(string longestWord, string word)
-        {
-            return word.Length > longestWord.Length;
+            return phrase
+                .Split(new[] { " " }, StringSplitOptions.None)
+                .Select(w => new { Word = w, w.Length })
+                .OrderBy(w => w.Length)
+                .Last()
+                .Word;
         }
     }
 }

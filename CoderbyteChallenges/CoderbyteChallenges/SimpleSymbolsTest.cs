@@ -20,13 +20,13 @@
         [TestMethod]
         public void GivenInput1WhenSimpleSymbolsThenReturnTrue()
         {
-            Check.That(new SimpleSymbols().Execute("+d+=3=+s+")).IsEqualTo("true");
+            Check.That(new SimpleSymbols().Execute("+d+=3=+s+")).IsTrue();
         }
 
         [TestMethod]
         public void GivenInput2WhenSimpleSymbolsThenReturnFalse()
         {
-            Check.That(new SimpleSymbols().Execute("f++d+")).IsEqualTo("false");
+            Check.That(new SimpleSymbols().Execute("f++d+")).IsFalse();
         }
 
         [TestMethod]
@@ -38,20 +38,20 @@
         [TestMethod]
         public void GivenPlusLetterPlusWhenSimpleSymbolsThenReturnTrue()
         {
-            Check.That(new SimpleSymbols().Execute("+f+")).IsEqualTo("true");
-            Check.That(new SimpleSymbols().Execute("+a+")).IsEqualTo("true");
+            Check.That(new SimpleSymbols().Execute("+f+")).IsTrue();
+            Check.That(new SimpleSymbols().Execute("+a+")).IsTrue();
         }
 
         [TestMethod]
         public void GivenLetterPlusWhenSimpleSymbolsThenReturnFalse()
         {
-            Check.That(new SimpleSymbols().Execute("f+")).IsEqualTo("false");
+            Check.That(new SimpleSymbols().Execute("f+")).IsFalse();
         }
 
         [TestMethod]
         public void GivenPlusLetterWhenSimpleSymbolsThenReturnFalse()
         {
-            Check.That(new SimpleSymbols().Execute("+f")).IsEqualTo("false");
+            Check.That(new SimpleSymbols().Execute("+f")).IsFalse();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace CoderbyteChallenges
 {
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using Tools;
@@ -8,7 +7,7 @@
     public class SimpleSymbols
     {
         private static readonly string[] Digits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        private static readonly string[] LettersLowerCase = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        private static readonly string[] LettersLowerCase = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "symbol", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
         private static readonly string[] LettersCapitalCase = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         private static readonly string[] Letters = LettersLowerCase.Concat(LettersCapitalCase).ToArray();
 
@@ -17,57 +16,33 @@
 
         private static readonly string[] AllowedCaracters = LettersAndDigits.Concat(Others).ToArray();
 
-        public string Execute(string str)
+        public bool Execute(string str)
         {
             if (HasDisallowedCaracters(str))
             {
                 throw new InvalidDataException("Input string has disallowed caracters");
             }
-            
-            foreach (var index in GetLetterIndexes(str))
-            {
-                if (CheckLetterAtIndex(str, index) == ReturnFalse())
-                {
-                    return ReturnFalse();
-                }
-            }
 
-            return ReturnTrue();
+            return str
+                .ToArrayOfStrings()
+                .Select((s, i) => new {Symbol = s, Index = i})
+                .Where(o => IsAllowedSymbol(o.Symbol))
+                .All(o => HasPlusAtLeft(str, o.Index) && HasPlusAtRight(str, o.Index));
         }
 
-        private IEnumerable<int> GetLetterIndexes(string str)
+        private static bool IsAllowedSymbol(string symbol)
         {
-            var lastIndex = 0;
-            foreach (var letter in str.ToArrayOfStrings())
-            {
-                if (Others.Contains(letter) || Digits.Contains(letter))
-                {
-                    continue;
-                }
-
-                lastIndex = str.IndexOf(letter, lastIndex);
-                yield return lastIndex;
-            }
+            return !(Others.Contains(symbol) || Digits.Contains(symbol));
         }
 
-        private string CheckLetterAtIndex(string str, int index)
-        {
-            if (!HasPlusAtLeft(str, index) || !HasPlusAtRight(str, index))
-            {
-                return ReturnFalse();
-            }
-
-            return ReturnTrue();
-        }
-
-        private bool HasPlusAtLeft(string letter, int index)
+        private static bool HasPlusAtLeft(string str, int index)
         {
             if (index == 0)
             {
                 return false;
             }
 
-            if (letter[index - 1] == '+')
+            if (str[index - 1] == '+')
             {
                 return true;
             }
@@ -75,29 +50,19 @@
             return false;
         }
 
-        private bool HasPlusAtRight(string letter, int index)
+        private bool HasPlusAtRight(string str, int index)
         {
-            if (index == letter.Length - 1)
+            if (index == str.Length - 1)
             {
                 return false;
             }
 
-            if (letter[index + 1] == '+')
+            if (str[index + 1] == '+')
             {
                 return true;
             }
 
             return false;
-        }
-
-        private string ReturnTrue()
-        {
-            return "true";
-        }
-
-        private string ReturnFalse()
-        {
-            return "false";
         }
 
         private static bool HasDisallowedCaracters(string str)

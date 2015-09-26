@@ -26,5 +26,15 @@
             Check.That("1b".IsLetter()).IsFalse();
             Check.That("".IsLetter()).IsFalse();
         }
+
+        [TestMethod]
+        public void CheckIndexesOf()
+        {
+            Check.That("a".IndexesOf('a')).ContainsExactly(new[] { 0 });
+            Check.That("'".IndexesOf('\'')).ContainsExactly(new[] { 0 });
+            Check.That("'".IndexesOf('a')).IsEmpty();
+            Check.That("aa".IndexesOf('a')).ContainsExactly(new[] { 0, 1 });
+            Check.That("aba".IndexesOf('a')).ContainsExactly(new[] { 0, 2 });
+        }
     }
 }

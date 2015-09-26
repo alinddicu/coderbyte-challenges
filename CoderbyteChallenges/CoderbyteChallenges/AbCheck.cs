@@ -22,14 +22,11 @@
 
         private static IEnumerable<int> GetIndexesOfA(string str)
         {
-            var chars = str.ToCharArray();
-            for (var index = 0; index < chars.Length; index++)
-            {
-                if (chars[index] == 'a')
-                {
-                    yield return index;
-                }
-            }
+            return str
+                .ToCharArray()
+                .Select((x, i) => new { X = x, Index = i })
+                .Where(g => g.X == 'a')
+                .Select(o => o.Index);
         }
     }
 }

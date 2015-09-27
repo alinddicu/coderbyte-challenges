@@ -57,6 +57,8 @@
     <Compile Include="AbCheckTest.cs" />
     <Compile Include="AlphabetSoup.cs" />
     <Compile Include="AlphabetSoupTest.cs" />
+    <Compile Include="ExOh.cs" />
+    <Compile Include="ExOhTest.cs" />
     <Compile Include="FirstFactorial.cs" />
     <Compile Include="FirstFactorialTest.cs" />
     <Compile Include="FirstReverse.cs" />

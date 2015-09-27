@@ -4,7 +4,7 @@
 
     public class ArithGeo
     {
-        private readonly IArithGeoResolver[] resolvers = new IArithGeoResolver[]
+        private readonly IArithGeoResolver[] _resolvers = new IArithGeoResolver[]
         {
             new ArithmetricResolver(), 
             new GeometricResolver(), 
@@ -13,7 +13,7 @@
 
         public ArithGeoType Execute(params int[] numbers)
         {
-            return resolvers.First(r => r.CanResolve(numbers)).Resolve();
+            return _resolvers.First(r => r.CanResolve(numbers)).Resolve();
         }
     }
 }

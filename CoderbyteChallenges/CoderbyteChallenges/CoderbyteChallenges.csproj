@@ -70,6 +70,8 @@
     <Compile Include="LetterChanges\LowerCaseLetterTranslator.cs" />
     <Compile Include="LetterChanges\OtherSymbolTranslator.cs" />
     <Compile Include="LetterChanges\UpperCaseLetterTranslator.cs" />
+    <Compile Include="Palindrome.cs" />
+    <Compile Include="PalindromeTest.cs" />
     <Compile Include="SimpleAdding.cs" />
     <Compile Include="SimpleAddingTest.cs" />
     <Compile Include="SimpleSymbols.cs" />

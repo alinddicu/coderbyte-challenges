@@ -57,6 +57,13 @@
     <Compile Include="AbCheckTest.cs" />
     <Compile Include="AlphabetSoup.cs" />
     <Compile Include="AlphabetSoupTest.cs" />
+    <Compile Include="ArithGeo\ArithGeo.cs" />
+    <Compile Include="ArithGeo\ArithGeoTest.cs" />
+    <Compile Include="ArithGeo\ArithGeoType.cs" />
+    <Compile Include="ArithGeo\ArithmetricResolver.cs" />
+    <Compile Include="ArithGeo\GeometricResolver.cs" />
+    <Compile Include="ArithGeo\IArithGeoResolver.cs" />
+    <Compile Include="ArithGeo\NoneResolver.cs" />
     <Compile Include="ExOh.cs" />
     <Compile Include="ExOhTest.cs" />
     <Compile Include="FirstFactorial.cs" />

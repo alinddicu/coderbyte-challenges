@@ -65,6 +65,8 @@
     <Compile Include="Easy\ArithGeo\IArithGeoResolver.cs" />
     <Compile Include="Easy\ArithGeo\NoneResolver.cs" />
     <Compile Include="Easy\ArithGeo\ProgressionResolverBase.cs" />
+    <Compile Include="Easy\ArrayAdditionI.cs" />
+    <Compile Include="Easy\ArrayAdditionITest.cs" />
     <Compile Include="Easy\ExOh.cs" />
     <Compile Include="Easy\ExOhTest.cs" />
     <Compile Include="Easy\FirstFactorial.cs" />

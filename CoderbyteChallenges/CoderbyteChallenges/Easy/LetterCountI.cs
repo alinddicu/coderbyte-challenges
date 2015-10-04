@@ -7,15 +7,18 @@
     {
         public string Execute(string str)
         {
-            // Hello apple pie
             var groups = str
                 .Split(" ".ToArray(), StringSplitOptions.None)
-                .Select(w => new {Word = w, G = w.GroupBy(l => l)})
+                .Select(w => new {Word = w, Count = w.GroupBy(lettre => lettre).Max(g => g.Count())})
                 .ToArray();
 
-            var max = groups.Max(g => g.G.Count());
+            var max = groups.Max(g => g.Count);
+            if (max == 1)
+            {
+                return string.Empty;
+            }
 
-            return groups.FirstOrDefault(g => g.G.Count() == max).Word;
+            return groups.First(g => g.Count == max).Word;
         }
     }
 }

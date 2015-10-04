@@ -20,5 +20,11 @@
         {
             Check.That(new LetterCountI().Execute("Hello apple pie")).IsEqualTo("Hello");
         }
+
+        [TestMethod]
+        public void GivenNoSpacewordsWhenLetterCountIThenEmpty()
+        {
+            Check.That(new LetterCountI().Execute("No words")).IsEmpty();
+        }
     }
 }

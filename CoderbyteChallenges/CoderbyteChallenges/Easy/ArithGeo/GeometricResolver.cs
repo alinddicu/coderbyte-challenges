@@ -2,30 +2,24 @@
 {
     using System.Linq;
 
-    public class GeometricResolver : IArithGeoResolver
+    public class GeometricResolver : ProgressionResolverBase
     {
-        public bool CanResolve(params int[] numbers)
+        public GeometricResolver()
+            : base(GetRatio, CheckProgression)
         {
-            if (numbers.Length == 1)
-            {
-                return false;
-            }
-
-            var orderedNumbers = numbers.OrderBy(n => n).ToArray();
-            var ratio = orderedNumbers[1] / orderedNumbers[0];
-
-            for (var index = 0; index < orderedNumbers.Length - 1; index++)
-            {
-                if (orderedNumbers[index] * ratio != orderedNumbers[index + 1])
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
-        public ArithGeoType Resolve()
+        private static bool CheckProgression(int[] orderedNumbers, int index, int ratio)
+        {
+            return orderedNumbers[index] * ratio != orderedNumbers[index + 1];
+        }
+
+        private static int GetRatio(int[] orderedNumbers)
+        {
+            return orderedNumbers[1] / orderedNumbers[0];
+        }
+
+        public override ArithGeoType Resolve()
         {
             return ArithGeoType.Geometric;
         }

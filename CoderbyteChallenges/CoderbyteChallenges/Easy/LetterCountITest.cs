@@ -1,6 +1,7 @@
 ﻿namespace CoderbyteChallenges.Easy
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NFluent;
 
     [TestClass]
     public class LetterCountITest
@@ -13,5 +14,11 @@
          Words will be separated by spaces. 
          
          */
+
+        [TestMethod]
+        public void GivenHelloSpaceAppleSpacePieWhenLetterCountIThenHello()
+        {
+            Check.That(new LetterCountI().Execute("Hello apple pie")).IsEqualTo("Hello");
+        }
     }
 }

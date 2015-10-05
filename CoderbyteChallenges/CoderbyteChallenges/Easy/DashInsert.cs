@@ -1,6 +1,5 @@
 ﻿namespace CoderbyteChallenges.Easy
 {
-    using System;
     using System.Linq;
     using Tools;
 
@@ -10,18 +9,16 @@
         {
             return str
                 .ToArrayOfStrings()
-                .Select((s, index) => new { S = s, IsOdd = IsOdd(s), Index = index })
-                .Select(
-                    o =>
-                        new
-                        {
-                            o.S,
-                            o.IsOdd,
-                            IsPreviousOdd = o.Index > 0 && IsOdd(str[o.Index]),
-                        })
-                .Select(o => new { S = o.S, Dash = o.IsOdd && o.IsPreviousOdd ? "-" : string.Empty })
-                .Select(o => o.Dash + o.S)
+                .Select((s, index) => new { S = s, IsOdd = IsOdd(s), IsNextOdd = IsNextOdd(str, index), Index = index })
+                .Select(o => new { o.S, Dash = o.IsOdd && o.IsNextOdd ? "-" : string.Empty, o.Index })
+                .Select(o => new { S = str[o.Index], o.Dash })
+                .Select(o => o.S + o.Dash)
                 .Join();
+        }
+
+        private static bool IsNextOdd(string str, int index)
+        {
+            return index < str.Length - 1 && IsOdd(str[index + 1]);
         }
 
         private static bool IsOdd(string s)

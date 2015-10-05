@@ -1,6 +1,5 @@
 ﻿namespace CoderbyteChallenges.Easy
 {
-    using System.Security.Cryptography;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -19,6 +18,13 @@
         public void Given99946WhenDashInsertThen9Dash9Dash946()
         {
             Check.That(new DashInsert().Execute("99946")).IsEqualTo("9-9-946");
+        }
+
+        
+        [TestMethod]
+        public void Given56730WhenDashInsertThen567Dash30()
+        {
+            Check.That(new DashInsert().Execute("56730")).IsEqualTo("567-30");
         }
     }
 }

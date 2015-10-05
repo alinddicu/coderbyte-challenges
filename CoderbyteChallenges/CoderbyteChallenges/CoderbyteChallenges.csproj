@@ -82,6 +82,8 @@
     <Compile Include="Easy\LetterChanges\UpperCaseLetterTranslator.cs" />
     <Compile Include="Easy\LetterCountI.cs" />
     <Compile Include="Easy\LetterCountITest.cs" />
+    <Compile Include="Easy\MeanMode.cs" />
+    <Compile Include="Easy\MeanModeTest.cs" />
     <Compile Include="Easy\Palindrome.cs" />
     <Compile Include="Easy\PalindromeTest.cs" />
     <Compile Include="Easy\SimpleAdding.cs" />

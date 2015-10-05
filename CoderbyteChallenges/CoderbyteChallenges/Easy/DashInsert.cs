@@ -18,17 +18,12 @@
 
         private static bool IsNextOdd(string str, int index)
         {
-            return index < str.Length - 1 && IsOdd(str[index + 1]);
+            return index < str.Length - 1 && IsOdd(str[index + 1] + string.Empty);
         }
 
         private static bool IsOdd(string s)
         {
             return int.Parse(s) % 2 == 1;
-        }
-
-        private static bool IsOdd(char s)
-        {
-            return int.Parse(s + "") % 2 == 1;
         }
     }
 }

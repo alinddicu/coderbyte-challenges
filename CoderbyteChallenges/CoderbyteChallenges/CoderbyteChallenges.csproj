@@ -88,6 +88,8 @@
     <Compile Include="Easy\MeanModeTest.cs" />
     <Compile Include="Easy\Palindrome.cs" />
     <Compile Include="Easy\PalindromeTest.cs" />
+    <Compile Include="Easy\PowersOfTwo.cs" />
+    <Compile Include="Easy\PowersOfTwoTest.cs" />
     <Compile Include="Easy\SimpleAdding.cs" />
     <Compile Include="Easy\SimpleAddingTest.cs" />
     <Compile Include="Easy\SimpleSymbols.cs" />

@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Easy\AbCheck.cs" />
     <Compile Include="Easy\AbCheckTest.cs" />
+    <Compile Include="Easy\AdditivePersistence.cs" />
+    <Compile Include="Easy\AdditivePersistenceTest.cs" />
     <Compile Include="Easy\AlphabetSoup.cs" />
     <Compile Include="Easy\AlphabetSoupTest.cs" />
     <Compile Include="Easy\ArithGeo\ArithGeo.cs" />

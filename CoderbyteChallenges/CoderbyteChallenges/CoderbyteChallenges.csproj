@@ -101,6 +101,8 @@
     <Compile Include="Easy\SimpleSymbolsTest.cs" />
     <Compile Include="Medium\PrimeTime.cs" />
     <Compile Include="Medium\PrimeTimeClass.cs" />
+    <Compile Include="Medium\RunLength.cs" />
+    <Compile Include="Medium\RunLengthTest.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />
     <Compile Include="Easy\LetterChanges\LetterChanges.cs" />

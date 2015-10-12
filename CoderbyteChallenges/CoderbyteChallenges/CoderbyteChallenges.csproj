@@ -99,6 +99,8 @@
     <Compile Include="Easy\SimpleAddingTest.cs" />
     <Compile Include="Easy\SimpleSymbols.cs" />
     <Compile Include="Easy\SimpleSymbolsTest.cs" />
+    <Compile Include="Medium\PrimeTime.cs" />
+    <Compile Include="Medium\PrimeTimeClass.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />
     <Compile Include="Easy\LetterChanges\LetterChanges.cs" />

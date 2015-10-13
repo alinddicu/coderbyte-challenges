@@ -20,5 +20,11 @@
         {
             Check.That(new PrimeMover().Execute(9)).IsEqualTo(23);
         }
+
+        [TestMethod]
+        public void Given100WhenPrimeMoverThenReturn541()
+        {
+            Check.That(new PrimeMover().Execute(100)).IsEqualTo(541);
+        }
     }
 }

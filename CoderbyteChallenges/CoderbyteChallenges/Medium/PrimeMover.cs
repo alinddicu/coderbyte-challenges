@@ -1,10 +1,15 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
+    using System.Linq;
+    using Tools;
+
     public class PrimeMover
     {
-        public int Execute(int number)
+        public int Execute(int nthPrimeNumber)
         {
-            throw new System.NotImplementedException();
+            var primeNumbers = new PrimeNumbers().Execute(10000).ToArray();
+
+            return primeNumbers[nthPrimeNumber - 1];
         }
     }
 }

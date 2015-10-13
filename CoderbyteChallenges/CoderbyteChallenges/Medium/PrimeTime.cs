@@ -1,6 +1,5 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
-    using System;
     using System.Linq;
 
     public class PrimeTime

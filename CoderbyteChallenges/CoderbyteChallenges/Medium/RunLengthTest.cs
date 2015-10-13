@@ -23,5 +23,11 @@
         {
             Check.That(new RunLength().Execute("aabbcde")).IsEqualTo("2a2b1c1d1e");
         }
+
+        [TestMethod]
+        public void GivenwwwbbbwWhenRunLengthThenReturn3w3b1w()
+        {
+            Check.That(new RunLength().Execute("wwwbbbw")).IsEqualTo("3w3b1w");
+        }
     }
 }

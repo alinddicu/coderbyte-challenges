@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    class PrimeNumbers
+    public class PrimeNumbers
     {
         public IEnumerable<int> Execute(int limit)
         {
@@ -17,15 +17,17 @@
             for (var number = 2; number < limit; number++)
             {
                 var divisor = 0;
-                for (var i = 0; i < divisors.Count; i++)
+                foreach (var t in divisors)
                 {
-                    divisor = divisors[i];
-                    if (divisor < number)
+                    divisor = t;
+                    if (divisor >= number)
                     {
-                        if (number % divisor == 0)
-                        {
-                            break;
-                        }
+                        continue;
+                    }
+
+                    if (number % divisor == 0)
+                    {
+                        break;
                     }
                 }
 

@@ -1,10 +1,5 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -29,7 +24,6 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void Given36And54WhenDivisionThenReturn18()
         {
             Check.That(new GreatestCommonFactor().Execute(36, 54)).IsEqualTo(18);

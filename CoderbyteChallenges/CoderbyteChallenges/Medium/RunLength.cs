@@ -32,19 +32,19 @@
 
         private class Group
         {
+            private readonly string _letter;
+
             public Group(string letter)
             {
-                Letter = letter;
+                _letter = letter;
                 Count = 1;
             }
-
-            public string Letter { get; private set; }
 
             public int Count { get; set; }
 
             public override string ToString()
             {
-                return string.Format(CultureInfo.InvariantCulture, "{0}{1}", Count, Letter);
+                return string.Format(CultureInfo.InvariantCulture, "{0}{1}", Count, _letter);
             }
         }
     }

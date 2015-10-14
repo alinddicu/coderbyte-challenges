@@ -21,7 +21,7 @@
                           join g2 in factorGroups2 on g1.Factor equals g2.Factor
                           select new FactorGroup(g2.Factor, Min(g1.Count, g2.Count));
 
-            return minFactorGroups.Select(fg => Power(fg)).Multiply();
+            return minFactorGroups.Select(Power).Multiply();
         }
 
         private static IEnumerable<int> FilterPrimeNumbers(int numberToFactor, IEnumerable<int> primeNumbers)
@@ -44,7 +44,10 @@
             return new List<int> { 1 };
         }
 
-        private static IEnumerable<int> GetFactors(List<int> factors, int number, int[] primeNumbers)
+        private static IEnumerable<int> GetFactors(
+            ICollection<int> factors, 
+            int number,
+            ICollection<int> primeNumbers)
         {
             foreach (var pn in primeNumbers)
             {

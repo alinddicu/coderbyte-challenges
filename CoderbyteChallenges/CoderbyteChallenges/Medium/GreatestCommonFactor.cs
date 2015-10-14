@@ -9,7 +9,7 @@
     {
         public int Execute(int n1, int n2)
         {
-            var primeNumbers = new PrimeNumbers().Execute(new[] { n1, n2 }.Min(n => n)).ToArray();
+            var primeNumbers = new PrimeNumbers().Execute(Min(n1, n2)).ToArray();
 
             var factors1 = GetFactors(InitFactorsList(), n1, primeNumbers.Where(pn => pn < n1).ToArray());
             var factors2 = GetFactors(InitFactorsList(), n2, primeNumbers.Where(pn => pn < n2).ToArray());
@@ -19,11 +19,19 @@
 
             var factors = from g1 in groups1
                           join g2 in groups2 on g1.Number equals g2.Number
-                          select new Group(g2.Number, new[] { g1.Count, g2.Count }.Min(o => o));
+                          select new Group(g2.Number, Min(g1.Count, g2.Count));
 
-            return factors.Select(f => (int)Math.Pow(f.Number, f.Count)).Multiply();
+            return factors.Select(f => Power(f)).Multiply();
+        }
 
-            throw new NotImplementedException();
+        private static int Power(Group f)
+        {
+            return (int)Math.Pow(f.Number, f.Count);
+        }
+
+        private static int Min(params int[] numbers)
+        {
+            return numbers.Min(n => n);
         }
 
         private static List<int> InitFactorsList()

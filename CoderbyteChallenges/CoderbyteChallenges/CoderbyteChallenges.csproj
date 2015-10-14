@@ -107,6 +107,8 @@
     <Compile Include="Medium\PrimeTimeTest.cs" />
     <Compile Include="Medium\RunLength.cs" />
     <Compile Include="Medium\RunLengthTest.cs" />
+    <Compile Include="Medium\StringScramble.cs" />
+    <Compile Include="Medium\StringScrambleTest.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />
     <Compile Include="Easy\LetterChanges\LetterChanges.cs" />

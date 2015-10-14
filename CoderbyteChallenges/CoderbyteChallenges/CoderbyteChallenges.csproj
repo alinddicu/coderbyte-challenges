@@ -101,6 +101,8 @@
     <Compile Include="Easy\SimpleSymbolsTest.cs" />
     <Compile Include="Medium\BinaryConverter.cs" />
     <Compile Include="Medium\BinaryConverterTest.cs" />
+    <Compile Include="Medium\CaesarCipher.cs" />
+    <Compile Include="Medium\CaesarCipherTest.cs" />
     <Compile Include="Medium\GreatestCommonFactor.cs" />
     <Compile Include="Medium\GreatestCommonFactorTest.cs" />
     <Compile Include="Medium\PrimeMover.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Medium\RunLengthTest.cs" />
     <Compile Include="Medium\StringScramble.cs" />
     <Compile Include="Medium\StringScrambleTest.cs" />
+    <Compile Include="Tools\Alphabet.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />
     <Compile Include="Easy\LetterChanges\LetterChanges.cs" />

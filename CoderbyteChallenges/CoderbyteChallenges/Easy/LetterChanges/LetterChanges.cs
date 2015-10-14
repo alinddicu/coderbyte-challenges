@@ -6,10 +6,6 @@
 
     public class LetterChanges
     {
-        private static readonly string[] LettersLowerCase = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-        private static readonly string[] LettersCapitalCase = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        private static readonly string[] Vowels = { "a", "e", "i", "o", "u" };
-
         private readonly ISymbolTranslator[] _letterTranslators;
 
         public LetterChanges()
@@ -17,8 +13,8 @@
             _letterTranslators = new ISymbolTranslator[]
             {
                 new OtherSymbolTranslator(), 
-                new LowerCaseLetterTranslator(LettersLowerCase), 
-                new UpperCaseLetterTranslator(LettersCapitalCase)
+                new LowerCaseLetterTranslator(Alphabet.LettersLowerCase), 
+                new UpperCaseLetterTranslator(Alphabet.LettersCapitalCase)
             };
         }
 
@@ -53,7 +49,7 @@
         {
             return str
                 .ToArrayOfStrings()
-                .Select(l => new {Letter = l, IsVowel = Vowels.Contains(l)})
+                .Select(l => new {Letter = l, IsVowel = Alphabet.Vowels.Contains(l)})
                 .Select(o => o.IsVowel ? o.Letter.ToUpper() : o.Letter)
                 .Join();
         }

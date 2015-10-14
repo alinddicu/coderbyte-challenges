@@ -1,5 +1,6 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Tools;
 
@@ -13,7 +14,7 @@
             return wordLetterInfos.All(w => randomLetterInfos.SingleOrDefault(r => w.Letter == r.Letter).Count >= w.Count);
         }
 
-        private static System.Collections.Generic.IEnumerable<LetterInfo> WordToLetterInfos(string word)
+        private static IEnumerable<LetterInfo> WordToLetterInfos(string word)
         {
             return word
                     .ToArrayOfStrings()

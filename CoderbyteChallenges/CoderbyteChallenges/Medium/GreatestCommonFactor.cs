@@ -7,26 +7,31 @@
 
     public class GreatestCommonFactor
     {
-        public int Execute(int n1, int n2)
+        public int Execute(int numberToFactor1, int numberToFactor2)
         {
-            var primeNumbers = new PrimeNumbers().Execute(Min(n1, n2)).ToArray();
+            var primeNumbers = new PrimeNumbers().Execute(Min(numberToFactor1, numberToFactor2)).ToArray();
 
-            var factors1 = GetFactors(InitFactorsList(), n1, primeNumbers.Where(pn => pn < n1).ToArray());
-            var factors2 = GetFactors(InitFactorsList(), n2, primeNumbers.Where(pn => pn < n2).ToArray());
+            var factors1 = GetFactors(InitFactorsList(), numberToFactor1, FilterPrimeNumbers(numberToFactor1, primeNumbers).ToArray());
+            var factors2 = GetFactors(InitFactorsList(), numberToFactor2, FilterPrimeNumbers(numberToFactor2, primeNumbers).ToArray());
 
-            var groups1 = factors1.GroupBy(o => o).Select(g => new Group(g.Key, g.Count()));
-            var groups2 = factors2.GroupBy(o => o).Select(g => new Group(g.Key, g.Count()));
+            var groups1 = factors1.GroupBy(o => o).Select(g => new GroupFactor(g.Key, g.Count()));
+            var groups2 = factors2.GroupBy(o => o).Select(g => new GroupFactor(g.Key, g.Count()));
 
             var factors = from g1 in groups1
-                          join g2 in groups2 on g1.Number equals g2.Number
-                          select new Group(g2.Number, Min(g1.Count, g2.Count));
+                          join g2 in groups2 on g1.Factor equals g2.Factor
+                          select new GroupFactor(g2.Factor, Min(g1.Count, g2.Count));
 
             return factors.Select(f => Power(f)).Multiply();
         }
 
-        private static int Power(Group f)
+        private static IEnumerable<int> FilterPrimeNumbers(int numberToFactor, IEnumerable<int> primeNumbers)
         {
-            return (int)Math.Pow(f.Number, f.Count);
+            return primeNumbers.Where(pn => pn < numberToFactor);
+        }
+
+        private static int Power(GroupFactor f)
+        {
+            return (int)Math.Pow(f.Factor, f.Count);
         }
 
         private static int Min(params int[] numbers)
@@ -59,22 +64,22 @@
             return factors;
         }
 
-        private struct Group
+        private struct GroupFactor
         {
-            public Group(int number, int count)
+            public GroupFactor(int factor, int count)
                 : this()
             {
-                Number = number;
+                Factor = factor;
                 Count = count;
             }
 
-            public int Number { get; private set; }
+            public int Factor { get; private set; }
 
             public int Count { get; private set; }
 
             public override string ToString()
             {
-                return string.Format("Number : {0}, Count : {1}", Number, Count);
+                return string.Format("Factor : {0}, Count : {1}", Factor, Count);
             }
         }
     }

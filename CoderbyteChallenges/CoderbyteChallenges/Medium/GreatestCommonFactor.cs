@@ -14,14 +14,14 @@
             var factors1 = GetFactors(InitFactorsList(), numberToFactor1, FilterPrimeNumbers(numberToFactor1, primeNumbers).ToArray());
             var factors2 = GetFactors(InitFactorsList(), numberToFactor2, FilterPrimeNumbers(numberToFactor2, primeNumbers).ToArray());
 
-            var groups1 = factors1.GroupBy(o => o).Select(g => new GroupFactor(g.Key, g.Count()));
-            var groups2 = factors2.GroupBy(o => o).Select(g => new GroupFactor(g.Key, g.Count()));
+            var factorGroups1 = factors1.GroupBy(o => o).Select(g => new FactorGroup(g.Key, g.Count()));
+            var factorGroups2 = factors2.GroupBy(o => o).Select(g => new FactorGroup(g.Key, g.Count()));
 
-            var factors = from g1 in groups1
-                          join g2 in groups2 on g1.Factor equals g2.Factor
-                          select new GroupFactor(g2.Factor, Min(g1.Count, g2.Count));
+            var minFactorGroups = from g1 in factorGroups1
+                          join g2 in factorGroups2 on g1.Factor equals g2.Factor
+                          select new FactorGroup(g2.Factor, Min(g1.Count, g2.Count));
 
-            return factors.Select(f => Power(f)).Multiply();
+            return minFactorGroups.Select(fg => Power(fg)).Multiply();
         }
 
         private static IEnumerable<int> FilterPrimeNumbers(int numberToFactor, IEnumerable<int> primeNumbers)
@@ -29,7 +29,7 @@
             return primeNumbers.Where(pn => pn < numberToFactor);
         }
 
-        private static int Power(GroupFactor f)
+        private static int Power(FactorGroup f)
         {
             return (int)Math.Pow(f.Factor, f.Count);
         }
@@ -64,9 +64,9 @@
             return factors;
         }
 
-        private struct GroupFactor
+        private struct FactorGroup
         {
-            public GroupFactor(int factor, int count)
+            public FactorGroup(int factor, int count)
                 : this()
             {
                 Factor = factor;

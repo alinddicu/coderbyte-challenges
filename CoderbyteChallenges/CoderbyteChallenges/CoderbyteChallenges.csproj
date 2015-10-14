@@ -105,6 +105,8 @@
     <Compile Include="Medium\CaesarCipherTest.cs" />
     <Compile Include="Medium\GreatestCommonFactor.cs" />
     <Compile Include="Medium\GreatestCommonFactorTest.cs" />
+    <Compile Include="Medium\PermutationStep.cs" />
+    <Compile Include="Medium\PermutationStepTest.cs" />
     <Compile Include="Medium\PrimeMover.cs" />
     <Compile Include="Medium\PrimeMoverTest.cs" />
     <Compile Include="Medium\PrimeTime.cs" />

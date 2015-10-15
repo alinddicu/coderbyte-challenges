@@ -23,10 +23,15 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void Given41352WhenPermutationStepThenReturn41523()
         {
             Check.That(new PermutationStep().Execute(41352)).IsEqualTo(41532);
+        }
+
+        [TestMethod]
+        public void Given999WhenPermutationStepThenReturnMinus1()
+        {
+            Check.That(new PermutationStep().Execute(999)).IsEqualTo(-1);
         }
     }
 }

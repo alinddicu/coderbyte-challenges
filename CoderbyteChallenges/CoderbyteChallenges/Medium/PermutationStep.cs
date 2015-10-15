@@ -8,7 +8,7 @@
     {
         public int Execute(int num)
         {
-            var strings = num.ToString(CultureInfo.InvariantCulture).ToArrayOfStrings().Reverse().ToArray();
+            var strings = num.ToString(CultureInfo.InvariantCulture).ToArrayOfStrings().ToArray();
 
             var indexToPermute = strings
                 .Select((s, i) => new DigitPosition(s, i))
@@ -19,7 +19,7 @@
                 return -1;
             }
 
-            return int.Parse(strings.Permute(indexToPermute.Index, indexToPermute.Index + 1).Reverse().Join());
+            return int.Parse(strings.Permute(indexToPermute.Index, indexToPermute.Index + 1).Join());
         }
 
         private static bool IsLesser(DigitPosition o, string[] strings)
@@ -30,7 +30,7 @@
                 return false;
             }
 
-            return int.Parse(o.S) > int.Parse(strings[nextIndex]);
+            return int.Parse(o.S) < int.Parse(strings[nextIndex]);
         }
 
         private class DigitPosition

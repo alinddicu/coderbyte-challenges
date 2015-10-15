@@ -30,7 +30,7 @@
                 return false;
             }
 
-            return int.Parse(o.S) < int.Parse(strings[nextIndex]);
+            return int.Parse(o.S) > int.Parse(strings[nextIndex]);
         }
 
         private class DigitPosition

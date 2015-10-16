@@ -117,6 +117,8 @@
     <Compile Include="Medium\StringReductionTest.cs" />
     <Compile Include="Medium\StringScramble.cs" />
     <Compile Include="Medium\StringScrambleTest.cs" />
+    <Compile Include="Medium\ThreeFiveMultiples.cs" />
+    <Compile Include="Medium\ThreeFiveMultiplesTest.cs" />
     <Compile Include="Medium\TripleDouble.cs" />
     <Compile Include="Medium\TripleDoubleTest.cs" />
     <Compile Include="Tools\Alphabet.cs" />

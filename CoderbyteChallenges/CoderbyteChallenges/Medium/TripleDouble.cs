@@ -1,6 +1,7 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using Tools;
 
@@ -17,7 +18,7 @@
         private static IEnumerable<DigitGroup> ToDigitGroup(int tripleInt, int groupCount)
         {
             return tripleInt
-                .ToString()
+                .ToString(CultureInfo.InvariantCulture)
                 .ToArrayOfStrings()
                 .GroupBy(o => o)
                 .Select(g => new DigitGroup(g.Key, g.Count()))                

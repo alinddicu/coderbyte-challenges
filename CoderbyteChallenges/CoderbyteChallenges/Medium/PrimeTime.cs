@@ -11,13 +11,9 @@
                 return false;
             }
 
-            var numbers = new int[number - 3];
-            for (var i = 2; i < number - 1; i++)
-            {
-                numbers[i - 2] = i;
-            }
-
-            return numbers.All(n => number % n != 0);
+            return Enumerable
+                .Range(2, number - 2)
+                .All(n => number % n != 0);
         }
     }
 }

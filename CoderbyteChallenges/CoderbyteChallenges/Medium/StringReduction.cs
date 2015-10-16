@@ -11,22 +11,25 @@
 
         public string Execute(string str)
         {
-            if (str == _previousStr)
+            while (true)
             {
-                return str;
+                if (str == _previousStr)
+                {
+                    return str;
+                }
+
+                if (str.Length == 2 && CountDistinctLetters(str) == 1)
+                {
+                    return str;
+                }
+
+                var toReduce = GetToReduce(str);
+                var start = GetStart(str, toReduce);
+                var end = str.Substring(2);
+
+                _previousStr = str;
+                str = start + Reduce(toReduce) + end;
             }
-
-            if (str.Length == 2 && CountDistinctLetters(str) == 1)
-            {
-                return str;
-            }
-
-            var toReduce = GetToReduce(str);
-            var start = GetStart(str, toReduce);
-            var end = str.Substring(2);
-
-            _previousStr = str;
-            return Execute(start + Reduce(toReduce) + end);
         }
 
         private static int CountDistinctLetters(string str)
@@ -85,9 +88,9 @@
                 Index = index;
             }
 
-            public string Letter { get; set; }
+            public string Letter { get; private set; }
 
-            public int Index { get; set; }
+            public int Index { get; private set; }
         }
     }
 }

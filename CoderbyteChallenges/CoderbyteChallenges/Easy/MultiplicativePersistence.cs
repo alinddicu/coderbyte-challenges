@@ -12,19 +12,11 @@
             var times = 0;
             while (number > 9)
             {
-                number = ToArrayOfInts(number).Multiply();
+                number = number.ToArrayOfInts().Multiply();
                 times++;
             }
 
             return times;
-        }
-
-        private static IEnumerable<int> ToArrayOfInts(int number)
-        {
-            return number
-                .ToString(CultureInfo.InvariantCulture)
-                .ToArrayOfStrings()
-                .Select(int.Parse);
         }
     }
 }

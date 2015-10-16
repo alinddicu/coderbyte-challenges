@@ -1,6 +1,7 @@
 ﻿namespace CoderbyteChallenges.Tools
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
 
     public static class Extensions
@@ -21,6 +22,14 @@
             objects[position2] = object1;
 
             return objects;
+        }
+
+        public static IEnumerable<int> ToArrayOfInts(this int number)
+        {
+            return number
+                .ToString(CultureInfo.InvariantCulture)
+                .ToArrayOfStrings()
+                .Select(int.Parse);
         }
     }
 }

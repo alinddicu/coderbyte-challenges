@@ -1,7 +1,6 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using Tools;
 
@@ -10,11 +9,10 @@
         public int Execute(int binaryNumber)
         {
             return binaryNumber
-                .ToString(CultureInfo.InvariantCulture)
-                .ToArrayOfStrings()
+                .ToArrayOfInts()
                 .Reverse()
-                .Select((s, i) => new { S = s, Index = i })
-                .Select(o => int.Parse(o.S) * (int)Math.Pow(2, o.Index))
+                .Select((i, index) => new { Int = i, Index = index })
+                .Select(o => o.Int * (int)Math.Pow(2, o.Index))
                 .Sum(i => i);
         }
     }

@@ -5,7 +5,7 @@
         public int Execute(int limitNumber)
         {
             var sum = 0;
-            for (int number = 0; number <= limitNumber; number++)
+            for (var number = 0; number <= limitNumber; number++)
             {
                 sum += number;
             }

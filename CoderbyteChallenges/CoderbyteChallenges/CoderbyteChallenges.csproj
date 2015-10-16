@@ -113,6 +113,8 @@
     <Compile Include="Medium\PrimeTimeTest.cs" />
     <Compile Include="Medium\RunLength.cs" />
     <Compile Include="Medium\RunLengthTest.cs" />
+    <Compile Include="Medium\StringReduction.cs" />
+    <Compile Include="Medium\StringReductionTest.cs" />
     <Compile Include="Medium\StringScramble.cs" />
     <Compile Include="Medium\StringScrambleTest.cs" />
     <Compile Include="Medium\TripleDouble.cs" />

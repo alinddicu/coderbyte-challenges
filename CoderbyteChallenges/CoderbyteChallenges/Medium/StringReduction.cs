@@ -9,19 +9,9 @@
 
         public string Execute(string str)
         {
-            if (str.Length == 1)
-            {
-                return str;
-            }
-
             if (str.Length == 2 && CountDistinctLetters(str) == 1)
             {
                 return str;
-            }
-
-            if (str.Length == 2 && CountDistinctLetters(str) == 2)
-            {
-                return Reduce(str);
             }
 
             var toReduce = GetToReduce(str);
@@ -48,7 +38,7 @@
                 .Select((s, i) => new LetterInfo(s, i))
                 .FirstOrDefault(l => CanBeReduced(str, l));
 
-            return letter.Letter + str.ToArrayOfStrings().ToArray()[letter.Index + 1];
+            return letter.Letter + str[letter.Index + 1].ToString();
         }
 
         private static string Reduce(string toReduce)

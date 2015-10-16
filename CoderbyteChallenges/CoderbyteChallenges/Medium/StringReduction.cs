@@ -7,8 +7,15 @@
     {
         private static readonly string[] Letters = { "a", "b", "c" };
 
+        private string _previousStr;
+
         public string Execute(string str)
         {
+            if (str == _previousStr)
+            {
+                return str;
+            }
+
             if (str.Length == 2 && CountDistinctLetters(str) == 1)
             {
                 return str;
@@ -18,6 +25,7 @@
             var start = GetStart(str, toReduce);
             var end = str.Substring(2);
 
+            _previousStr = str;
             return Execute(start + Reduce(toReduce) + end);
         }
 
@@ -33,26 +41,31 @@
 
         private static string GetToReduce(string str)
         {
-            var letter = str
+            var letterInfo = str
                 .ToArrayOfStrings()
                 .Select((s, i) => new LetterInfo(s, i))
                 .FirstOrDefault(l => CanBeReduced(str, l));
 
-            return letter.Letter + str[letter.Index + 1].ToString();
+            if (letterInfo == null)
+            {
+                return str.Substring(0, 2);
+            }
+
+            return letterInfo.Letter + str[letterInfo.Index + 1].ToString();
         }
 
         private static string Reduce(string toReduce)
         {
+            if (CountDistinctLetters(toReduce) != 2)
+            {
+                return toReduce;
+            }
+
             return Letters.Except(toReduce.ToArrayOfStrings()).Join();
         }
 
         private static bool CanBeReduced(string str, LetterInfo l)
         {
-            if (str.Length == 1)
-            {
-                return false;
-            }
-
             if (l.Index + 2 > str.Length)
             {
                 return false;
@@ -64,10 +77,9 @@
             return letter != nextLetter;
         }
 
-        private struct LetterInfo
+        private class LetterInfo
         {
             public LetterInfo(string letter, int index)
-                : this()
             {
                 Letter = letter;
                 Index = index;

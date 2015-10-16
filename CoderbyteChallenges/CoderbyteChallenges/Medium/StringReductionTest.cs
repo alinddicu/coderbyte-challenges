@@ -27,5 +27,11 @@
         {
             Check.That(new StringReduction().Execute("abcabc")).IsEqualTo("cc");
         }
+
+        [TestMethod]
+        public void GivenccccWhenStringReductionThenReturncccc()
+        {
+            Check.That(new StringReduction().Execute("cccc")).IsEqualTo("cccc");
+        }
     }
 }

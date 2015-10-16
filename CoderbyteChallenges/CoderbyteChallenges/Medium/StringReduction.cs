@@ -34,9 +34,9 @@
             return str.ToArrayOfStrings().GroupBy(s => s).Count();
         }
 
-        private string GetStart(string str, string toReduce)
+        private static string GetStart(string str, string toReduce)
         {
-            return str.Substring(0, str.IndexOf(toReduce));
+            return str.Substring(0, str.IndexOf(toReduce, System.StringComparison.Ordinal));
         }
 
         private static string GetToReduce(string str)

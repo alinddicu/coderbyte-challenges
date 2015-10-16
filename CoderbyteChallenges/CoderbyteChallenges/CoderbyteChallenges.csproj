@@ -103,6 +103,8 @@
     <Compile Include="Medium\BinaryConverterTest.cs" />
     <Compile Include="Medium\CaesarCipher.cs" />
     <Compile Include="Medium\CaesarCipherTest.cs" />
+    <Compile Include="Medium\CoinDeterminer.cs" />
+    <Compile Include="Medium\CoinDeterminerTest.cs" />
     <Compile Include="Medium\GreatestCommonFactor.cs" />
     <Compile Include="Medium\GreatestCommonFactorTest.cs" />
     <Compile Include="Medium\PermutationStep.cs" />

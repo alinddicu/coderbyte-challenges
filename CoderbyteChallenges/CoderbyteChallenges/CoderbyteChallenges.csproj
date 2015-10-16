@@ -115,6 +115,8 @@
     <Compile Include="Medium\RunLengthTest.cs" />
     <Compile Include="Medium\StringScramble.cs" />
     <Compile Include="Medium\StringScrambleTest.cs" />
+    <Compile Include="Medium\TripleDouble.cs" />
+    <Compile Include="Medium\TripleDoubleTest.cs" />
     <Compile Include="Tools\Alphabet.cs" />
     <Compile Include="Tools\CircularArray.cs" />
     <Compile Include="Tools\CircularArrayTest.cs" />

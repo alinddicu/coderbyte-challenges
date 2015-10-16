@@ -14,12 +14,12 @@
                 return str;
             }
 
-            if (str.Length == 2 && str.ToArrayOfStrings().GroupBy(s => s).Count() == 1)
+            if (str.Length == 2 && CountDistinctLetters(str) == 1)
             {
                 return str;
             }
 
-            if (str.Length == 2 && str.ToArrayOfStrings().GroupBy(s => s).Count() == 2)
+            if (str.Length == 2 && CountDistinctLetters(str) == 2)
             {
                 return Reduce(str);
             }
@@ -31,27 +31,32 @@
             return Execute(start + Reduce(toReduce) + end);
         }
 
+        private static int CountDistinctLetters(string str)
+        {
+            return str.ToArrayOfStrings().GroupBy(s => s).Count();
+        }
+
         private string GetStart(string str, string toReduce)
         {
             return str.Substring(0, str.IndexOf(toReduce));
         }
 
-        private string GetToReduce(string str)
+        private static string GetToReduce(string str)
         {
             var letter = str
                 .ToArrayOfStrings()
-                .Select((s, i) => new Letter(s, i))
+                .Select((s, i) => new LetterInfo(s, i))
                 .FirstOrDefault(l => CanBeReduced(str, l));
 
-            return letter.S + str.ToArrayOfStrings().ToArray()[letter.Index + 1];
+            return letter.Letter + str.ToArrayOfStrings().ToArray()[letter.Index + 1];
         }
 
-        private string Reduce(string toReduce)
+        private static string Reduce(string toReduce)
         {
             return Letters.Except(toReduce.ToArrayOfStrings()).Join();
         }
 
-        private bool CanBeReduced(string str, Letter l)
+        private static bool CanBeReduced(string str, LetterInfo l)
         {
             if (str.Length == 1)
             {
@@ -63,22 +68,22 @@
                 return false;
             }
 
-            var letter = l.S;
-            var nextLetter = str.ToArrayOfStrings().ToArray()[l.Index + 1];
+            var letter = l.Letter;
+            var nextLetter = str[l.Index + 1].ToString();
 
             return letter != nextLetter;
         }
 
-        private struct Letter
+        private struct LetterInfo
         {
-            public Letter(string s, int index)
+            public LetterInfo(string letter, int index)
                 : this()
             {
-                S = s;
+                Letter = letter;
                 Index = index;
             }
 
-            public string S { get; set; }
+            public string Letter { get; set; }
 
             public int Index { get; set; }
         }

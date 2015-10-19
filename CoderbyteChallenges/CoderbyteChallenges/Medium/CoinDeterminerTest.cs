@@ -24,5 +24,17 @@
         {
             Check.That(new CoinDeterminer().Execute(25)).IsEqualTo(3);
         }
+
+        [TestMethod]
+        public void Given6WhenCoinDeterminerThenReturn2()
+        {
+            Check.That(new CoinDeterminer().Execute(6)).IsEqualTo(2);
+        }
+
+        [TestMethod]
+        public void Given16WhenCoinDeterminerThenReturn2()
+        {
+            Check.That(new CoinDeterminer().Execute(16)).IsEqualTo(2);
+        }
     }
 }

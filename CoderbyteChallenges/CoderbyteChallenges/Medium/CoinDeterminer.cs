@@ -13,6 +13,7 @@
             var rest = sum - maxCoin;
             do
             {
+                // raccourci!!!
                 var coin = Coins.Except(new[] { maxCoin }).LastOrDefault(c => rest - c >= 0);
                 rest = rest - coin;
                 count++;

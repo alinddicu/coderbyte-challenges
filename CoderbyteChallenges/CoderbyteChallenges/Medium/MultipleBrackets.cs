@@ -11,20 +11,26 @@
         private static readonly IEnumerable<string> RightBrackets = new[] { ")", "]" };
         private static readonly IEnumerable<string> Brackets = LeftBrackets.Union(RightBrackets);
 
+        private static readonly InvalidPair[] InvalidPairs = new[]
+        {
+            new InvalidPair("(", "]"),
+            new InvalidPair("[", ")")
+        };
+
         public MultipleBracketsResult Execute(string phrase)
         {
-            var brackets = phrase.ToArrayOfStrings().Where(c => Brackets.Contains(c));
+            var brackets = phrase.ToArrayOfStrings().Where(c => Brackets.Contains(c)).ToArray();
             if (!IsLeftEqualsRight(brackets))
             {
                 return MultipleBracketsResult.False;
             }
 
-            if (!IsOpeningSameAsClosing(brackets.ToArray()))
+            if (!IsOpeningSameAsClosing(brackets))
             {
                 return MultipleBracketsResult.False;
             }
 
-            throw new NotImplementedException();
+            return new MultipleBracketsResult(true, brackets.Count(c => LeftBrackets.Contains(c)));
         }
 
         private static bool IsLeftEqualsRight(IEnumerable<string> brackets)
@@ -38,8 +44,9 @@
         private bool IsOpeningSameAsClosing(string[] brackets)
         {
             return !brackets
-                .Select((b, index) => new { First = b, Second = GetSecond(brackets, index) })
-                .Any(o => LeftBrackets.Contains(o.First) && !RightBrackets.Contains(o.Second));
+                .Select((b, index) => new InvalidPair(b, GetSecond(brackets, index)))
+                .Where(o => LeftBrackets.Contains(o.First))
+                .Any(o => InvalidPairs.Contains(o));
         }
 
         private string GetSecond(string[] brackets, int index)
@@ -50,6 +57,20 @@
             }
 
             return brackets[index + 1];
+        }
+
+        private struct InvalidPair
+        {
+            public InvalidPair(string first, string second)
+                : this()
+            {
+                First = first;
+                Second = second;
+            }
+
+            public string First { get; private set; }
+
+            public string Second { get; private set; }
         }
     }
 

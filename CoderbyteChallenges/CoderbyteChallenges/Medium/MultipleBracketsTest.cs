@@ -33,7 +33,6 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void GivenTest3WhenMultipleBracketsThenReturnTrueAnd5()
         {
             Check.That(new MultipleBrackets().Execute("(c([od]er)) b(yt[e])")).IsEqualTo(new MultipleBracketsResult(true, 5));

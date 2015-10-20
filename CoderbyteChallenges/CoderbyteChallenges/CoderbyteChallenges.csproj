@@ -107,6 +107,8 @@
     <Compile Include="Medium\CoinDeterminerTest.cs" />
     <Compile Include="Medium\GreatestCommonFactor.cs" />
     <Compile Include="Medium\GreatestCommonFactorTest.cs" />
+    <Compile Include="Medium\MultipleBrackets.cs" />
+    <Compile Include="Medium\MultipleBracketsTest.cs" />
     <Compile Include="Medium\PermutationStep.cs" />
     <Compile Include="Medium\PermutationStepTest.cs" />
     <Compile Include="Medium\PrimeMover.cs" />

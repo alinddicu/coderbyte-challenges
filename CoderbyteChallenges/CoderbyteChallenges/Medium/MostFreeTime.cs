@@ -4,26 +4,18 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using Tools;
 
     public class MostFreeTime
     {
         public string Execute(IEnumerable<string> evts)
         {
-            var events = evts.Select(evt => new Event(evt)).OrderBy(e => e.Start);
+            var events = evts.Select(evt => new Event(evt)).OrderBy(e => e.Start).ToArray();
 
-            var freeTime = TimeSpan.Zero;
-            var enumerator = events.GetEnumerator();
-            Event previous = null;
-            while (enumerator.MoveNext())
-            {
-                var current = enumerator.Current;
-                if (previous != null)
-                {
-                    freeTime = freeTime.Add(current.Start.Subtract(previous.End));
-                }
-
-                previous = current;
-            }
+            var freeTime = events
+                .Select((evt, index) => new EventCouple(evt, events.GetNext(index)))
+                .Select(o => o.ComputeFreeTime())
+                .Aggregate((prev, cur) => prev.Add(cur));
 
             return FormatFreeTime(freeTime);
         }
@@ -31,6 +23,23 @@
         private static string FormatFreeTime(TimeSpan freeTime)
         {
             return string.Format("{0:00}:{1:00}", Math.Truncate(freeTime.TotalHours), freeTime.Minutes);
+        }
+
+        private class EventCouple
+        {
+            private readonly Event _current;
+            private readonly Event _next;
+
+            public EventCouple(Event current, Event next)
+            {
+                _current = current;
+                _next = next;
+            }
+
+            public TimeSpan ComputeFreeTime()
+            {
+                return _next == null ? TimeSpan.Zero : _next.Start.Subtract(_current.End);
+            }
         }
 
         private class Event

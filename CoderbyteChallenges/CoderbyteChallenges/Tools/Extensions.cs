@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using NFluent;
 
     public static class Extensions
     {
@@ -30,6 +31,16 @@
                 .ToString(CultureInfo.InvariantCulture)
                 .ToArrayOfStrings()
                 .Select(int.Parse);
+        }
+
+        public static T GetNext<T>(this IList<T> objects, int index)
+        {
+            if (index > objects.Count() - 2)
+            {
+                return default(T);
+            }
+
+            return objects[index + 1];
         }
     }
 }

@@ -29,5 +29,12 @@
             var events = new[] { "09:00AM-10:00AM", "10:30AM-12:00PM", "12:15PM-02:00PM" };
             Check.That(new MostFreeTime().Execute(events)).IsEqualTo("00:45");
         }
+
+        [TestMethod]
+        public void GivenTest2WhenMostFreeTimeThenResultIsOk()
+        {
+            var events = new[] { "09:00AM-12:11PM", "12:15PM-02:00PM", "02:02PM-04:00PM" };
+            Check.That(new MostFreeTime().Execute(events)).IsEqualTo("00:06");
+        }
     }
 }

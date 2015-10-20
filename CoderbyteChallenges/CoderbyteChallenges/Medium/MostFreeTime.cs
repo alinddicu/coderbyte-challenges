@@ -9,14 +9,14 @@
     {
         public string Execute(IEnumerable<string> evts)
         {
-            var events = evts.Select(evt => new Event(evt)).OrderBy(e => e.Start).ToArray();
+            var events = evts.Select(evt => new Event(evt)).OrderBy(e => e.Start);
 
             var freeTime = TimeSpan.Zero;
             var enumerator = events.GetEnumerator();
             Event previous = null;
             while (enumerator.MoveNext())
             {
-                var current = (Event)enumerator.Current;
+                var current = enumerator.Current;
                 if (previous != null)
                 {
                     freeTime = freeTime.Add(current.Start.Subtract(previous.End));

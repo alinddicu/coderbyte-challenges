@@ -25,35 +25,39 @@
                 previous = current;
             }
 
-            return string.Format("{0:00}:{1:00}", Math.Truncate(freeTime.TotalHours), freeTime.Minutes);
+            return FormatFreeTime(freeTime);
         }
 
-        private DateTime GetNextEvent(Event evt, int index, Event[] events)
+        private static string FormatFreeTime(TimeSpan freeTime)
         {
-            throw new NotImplementedException();
+            return string.Format("{0:00}:{1:00}", Math.Truncate(freeTime.TotalHours), freeTime.Minutes);
         }
 
         private class Event
         {
-            public Event(DateTime start, DateTime end)
-            {
-                Start = start;
-                End = end;
-            }
-
             public Event(string evt)
             {
                 var splits = evt.Split('-');
-                var start = splits[0].Insert(5, ":00 ");
-                var end = splits[1].Insert(5, ":00 ");
+                var start = PreformatTime(splits[0]);
+                var end = PreformatTime(splits[1]);
 
-                Start = DateTime.ParseExact(start, "h:mm:ss tt", CultureInfo.InvariantCulture);
-                End = DateTime.ParseExact(end, "h:mm:ss tt", CultureInfo.InvariantCulture);
+                Start = ParseExactTime(start);
+                End = ParseExactTime(end);
             }
 
             public DateTime Start { get; private set; }
 
             public DateTime End { get; private set; }
+
+            private static string PreformatTime(string time)
+            {
+                return time.Insert(5, " ");
+            }
+
+            private static DateTime ParseExactTime(string start)
+            {
+                return DateTime.ParseExact(start, "h:mm tt", CultureInfo.InvariantCulture);
+            }
         }
     }
 }

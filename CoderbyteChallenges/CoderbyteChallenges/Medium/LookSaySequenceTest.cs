@@ -27,5 +27,11 @@
         {
             Check.That(new LookSaySequence().Execute(1211)).IsEqualTo(111221);
         }
+
+        [TestMethod]
+        public void Given2466WhenLookSaySequenceThenReturn121426()
+        {
+            Check.That(new LookSaySequence().Execute(2466)).IsEqualTo(121426);
+        }
     }
 }

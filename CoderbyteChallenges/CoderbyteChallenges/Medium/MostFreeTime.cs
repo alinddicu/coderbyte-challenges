@@ -13,7 +13,8 @@
             var events = evts.Select(evt => new Event(evt)).OrderBy(e => e.Start).ToArray();
 
             var freeTime = events
-                .Select((evt, index) => new EventCouple(evt, events.GetNext(index)))
+                .Select((evt, index) => new EventTransition(evt, events.GetNext(index)))
+                .Where(e => e.Next != null)
                 .Select(o => o.ComputeFreeTime())
                 .Aggregate((prev, cur) => prev.Add(cur));
 
@@ -25,21 +26,22 @@
             return string.Format("{0:00}:{1:00}", Math.Truncate(freeTime.TotalHours), freeTime.Minutes);
         }
 
-        private class EventCouple
+        private class EventTransition
         {
             private readonly Event _current;
-            private readonly Event _next;
 
-            public EventCouple(Event current, Event next)
+            public EventTransition(Event current, Event next)
             {
                 _current = current;
-                _next = next;
+                Next = next;
             }
 
             public TimeSpan ComputeFreeTime()
             {
-                return _next == null ? TimeSpan.Zero : _next.Start.Subtract(_current.End);
+                return Next.Start.Subtract(_current.End);
             }
+
+            public Event Next { get; private set; }
         }
 
         private class Event

@@ -1,6 +1,5 @@
 ﻿namespace CoderbyteChallenges.Medium
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -14,35 +13,39 @@
                 .ToString(CultureInfo.InvariantCulture)
                 .ToArrayOfStrings();
 
-            var groups = new List<List<string>>();
-            var lastString = strings.First();
-            var group = new List<string>();
+            var groups = new List<DigitGroup>();
+            var lastString = string.Empty;
             for (var i = 0; i < strings.Length; i++)
             {
                 var s = strings[i];
                 if (lastString == s)
                 {
-                    group.Add(s);
-                    if (i == strings.Length - 1)
-                    {
-                        groups.Add(group);
-                    }
+                    groups.Last().Count++;
                 }
                 else
                 {
-                    groups.Add(group);
-                    group = new List<string> { s };
+                    groups.Add(new DigitGroup(s));
                 }
 
                 lastString = s;
             }
 
             return int.Parse(groups
-                .Select(g => new { Digit = g.First(), Count = g.Count() })
-                .Select(o => o.Count.ToString(CultureInfo.InvariantCulture) + o.Digit)
+                .Select(o => o.Count.ToString(CultureInfo.InvariantCulture) + o.Letter)
                 .Join());
+        }
 
-            throw new NotImplementedException();
+        private class DigitGroup
+        {
+            public DigitGroup(string letter) 
+            {
+                Letter = letter;
+                Count = 1;
+            }
+
+            public string Letter { get; private set; }
+
+            public int Count { get; set; }
         }
     }
 }

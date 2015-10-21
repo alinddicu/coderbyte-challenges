@@ -9,43 +9,47 @@
     {
         public int Execute(int num)
         {
-            var strings = num
+            var digits = num
                 .ToString(CultureInfo.InvariantCulture)
                 .ToArrayOfStrings();
 
-            var groups = new List<DigitGroup>();
-            var lastString = string.Empty;
-            for (var i = 0; i < strings.Length; i++)
+            var digitGroups = new List<DigitGroup>();
+            var lastDigit = string.Empty;
+            foreach (var digit in digits)
             {
-                var s = strings[i];
-                if (lastString == s)
+                if (lastDigit == digit)
                 {
-                    groups.Last().Count++;
+                    digitGroups.Last().Count++;
                 }
                 else
                 {
-                    groups.Add(new DigitGroup(s));
+                    digitGroups.Add(new DigitGroup(digit));
                 }
 
-                lastString = s;
+                lastDigit = digit;
             }
 
-            return int.Parse(groups
-                .Select(o => o.Count.ToString(CultureInfo.InvariantCulture) + o.Letter)
+            return int.Parse(digitGroups
+                .Select(o => o.ToString())
                 .Join());
         }
 
         private class DigitGroup
         {
+            private readonly string _letter;
+
             public DigitGroup(string letter) 
             {
-                Letter = letter;
+                _letter = letter;
                 Count = 1;
             }
 
-            public string Letter { get; private set; }
-
             public int Count { get; set; }
+
+            public override string ToString()
+            {
+                return Count.ToString(CultureInfo.InvariantCulture) + _letter;
+            }
         }
     }
 }

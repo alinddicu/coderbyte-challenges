@@ -14,7 +14,7 @@
 
             var freeTime = events
                 .Select((evt, index) => new EventTransition(evt, events.GetNext(index)))
-                .Where(e => e.Next != null)
+                .Where(e => e.HasNext())
                 .Select(o => o.ComputeFreeTime())
                 .Aggregate((prev, cur) => prev.Add(cur));
 
@@ -29,19 +29,23 @@
         private class EventTransition
         {
             private readonly Event _current;
+            private readonly Event _next;
 
             public EventTransition(Event current, Event next)
             {
                 _current = current;
-                Next = next;
+                _next = next;
             }
 
             public TimeSpan ComputeFreeTime()
             {
-                return Next.Start.Subtract(_current.End);
+                return _next.Start.Subtract(_current.End);
             }
 
-            public Event Next { get; private set; }
+            public bool HasNext()
+            {
+                return _next != null;
+            }
         }
 
         private class Event

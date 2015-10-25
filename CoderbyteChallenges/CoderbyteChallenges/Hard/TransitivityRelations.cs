@@ -17,8 +17,6 @@
             {
                 return new TransitivityRelationsResult(true);
             }
-
-            throw new System.NotImplementedException();
         }
 
         private class Matrix
@@ -44,7 +42,7 @@
                 {
                     var end =
                         _connections.FirstOrDefault(
-                            c => c.Start.Equals(connection.End) 
+                            c => c.Start.Equals(connection.End)
                                 && !c.End.Equals(connection.Start)
                                 && !connection.End.Equals(c.End));
                     if (!end.Equals(default(Connection)))
@@ -85,25 +83,10 @@
                 return _transitions.All(t => _connections.Contains(t.GetConnection()) || _connections.Contains(t.GetReverseConnection()));
             }
 
-            private class Relation
-            {
-                public Relation(Node start, Node middle, Node end)
-                {
-                    Start = start;
-                    Middle = middle;
-                    End = end;
-                }
-
-                public Node End { get; private set; }
-
-                public Node Middle { get; private set; }
-
-                public Node Start { get; private set; }
-            }
-
-            private class Node
+            private struct Node
             {
                 public Node(int position)
+                    : this()
                 {
                     Position = position;
                 }
@@ -113,17 +96,6 @@
                 public override string ToString()
                 {
                     return Position.ToString();
-                }
-
-                public override bool Equals(object obj)
-                {
-                    var node = obj as Node;
-                    if (node == null)
-                    {
-                        return false;
-                    }
-
-                    return node.Position == Position;
                 }
             }
 

@@ -77,9 +77,15 @@
             {
                 var isTransitive =
                     _transitions.All(
-                        t => _connections.Contains(t.GetConnection()) || _connections.Contains(t.GetReverseConnection()));
+                        t => _connections.Contains(t.GetConnection()) 
+                            || _connections.Contains(t.GetReverseConnection()));
 
-                return new TransitivityRelationsResult(isTransitive);
+                var missingConnections = _transitions.Where(
+                    t => !_connections.Contains(t.GetConnection())
+                         && !_connections.Contains(t.GetReverseConnection()))
+                         .Select(t => t.GetConnection());
+
+                return new TransitivityRelationsResult(isTransitive, missingConnections.Select(c => c.ToString()));
             }
 
             private struct Node
@@ -113,7 +119,7 @@
 
                 public override string ToString()
                 {
-                    return string.Format("{0} : {1}", Start, End);
+                    return string.Format("({0},{1})", Start, End);
                 }
             }
 
@@ -152,12 +158,15 @@
 
         public class TransitivityRelationsResult
         {
-            public TransitivityRelationsResult(bool isTransitive)
+            public TransitivityRelationsResult(bool isTransitive, IEnumerable<string> missingConnections)
             {
                 IsTransitive = isTransitive;
+                MissingConnections = missingConnections;
             }
 
             public bool IsTransitive { get; private set; }
+
+            public IEnumerable<string> MissingConnections { get; private set; }
         }
     }
 }

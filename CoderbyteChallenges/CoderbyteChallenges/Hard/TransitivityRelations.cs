@@ -26,16 +26,14 @@
 
             private static int[][] Parse(params string[] stringMatrixes)
             {
-                var returnLines = new List<int[]>();
-                foreach (var line in stringMatrixes)
-                {
-                    returnLines.Add(
-                        line.ToArrayOfStrings()
+                return stringMatrixes
+                    .Select(
+                        line => 
+                            line
+                            .ToArrayOfStrings()
                             .Where(s => !RemovableChars.Contains(s))
-                            .Select(int.Parse).ToArray());
-                }
-
-                return returnLines.ToArray();
+                            .Select(int.Parse)
+                            .ToArray()).ToArray();
             }
         }
 

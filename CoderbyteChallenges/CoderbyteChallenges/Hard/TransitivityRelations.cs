@@ -1,6 +1,7 @@
 ﻿namespace CoderbyteChallenges.Hard
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using Tools;
 
@@ -100,7 +101,7 @@
 
                 public override string ToString()
                 {
-                    return Position.ToString();
+                    return Position.ToString(CultureInfo.InvariantCulture);
                 }
             }
 
@@ -125,33 +126,31 @@
 
             private struct Transition
             {
+                private readonly Node _start;
+                private readonly Node _middle;
+                private readonly Node _end;
+
                 public Transition(Node start, Node middle, Node end)
                     : this()
                 {
-                    Start = start;
-                    Middle = middle;
-                    End = end;
+                    _start = start;
+                    _middle = middle;
+                    _end = end;
                 }
-
-                public Node Start { get; private set; }
-
-                public Node Middle { get; private set; }
-
-                public Node End { get; private set; }
 
                 public override string ToString()
                 {
-                    return string.Format("{0} : {1} : {2}", Start, Middle, End);
+                    return string.Format("{0} : {1} : {2}", _start, _middle, _end);
                 }
 
                 public Connection GetConnection()
                 {
-                    return new Connection(Start, End);
+                    return new Connection(_start, _end);
                 }
 
                 public Connection GetReverseConnection()
                 {
-                    return new Connection(End, Start);
+                    return new Connection(_end, _start);
                 }
             }
         }

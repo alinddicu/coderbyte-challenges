@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net.Configuration;
+    using System.Runtime.Serialization.Formatters;
     using Tools;
 
     public class TransitivityRelations
@@ -26,30 +26,45 @@
             private readonly int[][] _members;
             private readonly int _size;
             private readonly Node[] _nodes;
-            private Connection[] _connections;
+            private readonly Connection[] _connections;
+            private readonly Transition[] _transitions;
 
             public Matrix(params string[] stringMatrixes)
             {
                 _members = Parse(stringMatrixes);
                 _size = _members.First().Length;
                 _nodes = Enumerable.Range(0, _size).Select(i => new Node(i)).ToArray();
-                _connections = CreateConnections().ToArray();
+                _connections = SetConnections().ToArray();
+                _transitions = SetTransitions().ToArray();
             }
 
-            private IEnumerable<Connection> CreateConnections()
+            private IEnumerable<Transition> SetTransitions()
+            {
+                foreach (var connection in _connections.Where(c => !c.Start.Equals(c.End)))
+                {
+                    var end =
+                        _connections.FirstOrDefault(
+                            c => c.Start.Equals(connection.End) 
+                                && !c.End.Equals(connection.Start)
+                                && !connection.End.Equals(c.End));
+                    if (!end.Equals(default(Connection)))
+                    {
+                        yield return new Transition(connection.Start, connection.End, end.End);
+                    }
+                }
+            }
+
+            private IEnumerable<Connection> SetConnections()
             {
                 foreach (var node in _nodes)
                 {
-                    var connection = new Connection(node);
                     for (var j = 0; j < _size; j++)
                     {
                         if (_members[node.Position][j] == 1)
                         {
-                            connection.Add(new Node(j));
+                            yield return new Connection(node, new Node(j));
                         }
                     }
-
-                    yield return connection;
                 }
             }
 
@@ -67,15 +82,28 @@
 
             public bool IsTransitive()
             {
-
-
-                return false;
+                return _transitions.All(t => _connections.Contains(t.GetConnection()) || _connections.Contains(t.GetReverseConnection()));
             }
 
-            private struct Node
+            private class Relation
+            {
+                public Relation(Node start, Node middle, Node end)
+                {
+                    Start = start;
+                    Middle = middle;
+                    End = end;
+                }
+
+                public Node End { get; private set; }
+
+                public Node Middle { get; private set; }
+
+                public Node Start { get; private set; }
+            }
+
+            private class Node
             {
                 public Node(int position)
-                    : this()
                 {
                     Position = position;
                 }
@@ -86,28 +114,67 @@
                 {
                     return Position.ToString();
                 }
+
+                public override bool Equals(object obj)
+                {
+                    var node = obj as Node;
+                    if (node == null)
+                    {
+                        return false;
+                    }
+
+                    return node.Position == Position;
+                }
             }
 
             private struct Connection
             {
-                private Node _node;
-                private readonly List<Node> _neighbours;
-
-                public Connection(Node node)
+                public Connection(Node start, Node end)
                     : this()
                 {
-                    _node = node;
-                    _neighbours = new List<Node>();
+                    Start = start;
+                    End = end;
                 }
 
-                public void Add(Node node)
-                {
-                    _neighbours.Add(node);
-                }
+                public Node Start { get; private set; }
+
+                public Node End { get; private set; }
 
                 public override string ToString()
                 {
-                    return string.Format("{0} : [{1}]", _node, _neighbours.Select(n => n.ToString()).Join(", "));
+                    return string.Format("{0} : {1}", Start, End);
+                }
+            }
+
+            private struct Transition
+            {
+                public Transition(Node start, Node middle, Node end)
+                    : this()
+                {
+                    Start = start;
+                    Middle = middle;
+                    End = end;
+                }
+
+                public Node Start { get; private set; }
+
+                public Node Middle { get; private set; }
+
+                public Node End { get; private set; }
+
+                public override string ToString()
+                {
+                    return string.Format("{0} : {1} : {2}", Start, Middle, End);
+                }
+
+                public Connection GetConnection()
+                {
+                    return new Connection(Start, End);
+                }
+
+                public Connection GetReverseConnection()
+                {
+                    return new Connection(End, Start);
                 }
             }
         }

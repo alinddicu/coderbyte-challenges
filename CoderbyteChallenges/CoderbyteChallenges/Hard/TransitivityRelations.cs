@@ -66,25 +66,22 @@
             {
                 return stringMatrixes
                     .Select(
-                        line =>
-                            line
+                        line => line
                             .ToArrayOfStrings()
                             .Where(s => !RemovableChars.Contains(s))
                             .Select(int.Parse)
-                            .ToArray()).ToArray();
+                            .ToArray())
+                     .ToArray();
             }
 
             public TransitivityRelationsResult IsTransitive()
             {
-                var isTransitive =
-                    _transitions.All(
-                        t => _connections.Contains(t.GetConnection()));
+                var missingConnections = _transitions
+                    .Where(t => !_connections.Contains(t.GetConnection()))
+                    .Select(t => t.GetConnection())
+                    .ToArray();
 
-                var missingConnections = _transitions.Where(
-                    t => !_connections.Contains(t.GetConnection()))
-                         .Select(t => t.GetConnection());
-
-                return new TransitivityRelationsResult(isTransitive, missingConnections.Select(c => c.ToString()));
+                return new TransitivityRelationsResult(!missingConnections.Any(), missingConnections.Select(c => c.ToString()));
             }
 
             private struct Node
@@ -144,11 +141,6 @@
                 public Connection GetConnection()
                 {
                     return new Connection(_start, _end);
-                }
-
-                public Connection GetReverseConnection()
-                {
-                    return new Connection(_end, _start);
                 }
             }
         }

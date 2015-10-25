@@ -14,11 +14,11 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void GivenExampleWhenExecuteThenReturnFalse()
         {
             var result = new TransitivityRelations().Execute("(1,1,1)", "(1,0,0)", "(0,1,0)");
             Check.That(result.IsTransitive).IsFalse();
+            Check.That(result.MissingConnections).ContainsExactly("(1,2)", "(2,0)");
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@
         {
             var result = new TransitivityRelations().Execute("(0,1,0,0)", "(0,0,1,0)", "(0,0,1,1)", "(0,0,0,1)");
             Check.That(result.IsTransitive).IsFalse();
-            Check.That(result.MissingConnections).ContainsExactly("(0,2)", "(0,3)", "(1,3)");
+            Check.That(result.MissingConnections).ContainsExactly("(0,2)", "(1,3)");
         }
     }
 }

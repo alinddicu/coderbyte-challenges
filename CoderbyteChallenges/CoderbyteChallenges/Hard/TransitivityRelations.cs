@@ -78,12 +78,10 @@
             {
                 var isTransitive =
                     _transitions.All(
-                        t => _connections.Contains(t.GetConnection()) 
-                            || _connections.Contains(t.GetReverseConnection()));
+                        t => _connections.Contains(t.GetConnection()));
 
                 var missingConnections = _transitions.Where(
-                    t => !_connections.Contains(t.GetConnection())
-                         && !_connections.Contains(t.GetReverseConnection()))
+                    t => !_connections.Contains(t.GetConnection()))
                          .Select(t => t.GetConnection());
 
                 return new TransitivityRelationsResult(isTransitive, missingConnections.Select(c => c.ToString()));

@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Serialization.Formatters;
     using Tools;
 
     public class TransitivityRelations
@@ -12,11 +11,7 @@
         public TransitivityRelationsResult Execute(params string[] stringMatrixes)
         {
             var matrix = new Matrix(stringMatrixes);
-            var isTransitive = matrix.IsTransitive();
-            if (isTransitive)
-            {
-                return new TransitivityRelationsResult(true);
-            }
+            return matrix.IsTransitive();
         }
 
         private class Matrix
@@ -78,9 +73,13 @@
                             .ToArray()).ToArray();
             }
 
-            public bool IsTransitive()
+            public TransitivityRelationsResult IsTransitive()
             {
-                return _transitions.All(t => _connections.Contains(t.GetConnection()) || _connections.Contains(t.GetReverseConnection()));
+                var isTransitive =
+                    _transitions.All(
+                        t => _connections.Contains(t.GetConnection()) || _connections.Contains(t.GetReverseConnection()));
+
+                return new TransitivityRelationsResult(isTransitive);
             }
 
             private struct Node

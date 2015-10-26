@@ -1,6 +1,7 @@
-﻿using System.Globalization;
-namespace CoderbyteChallenges.Hard.TransitivityRelations
+﻿namespace CoderbyteChallenges.Hard.TransitivityRelations
 {
+    using System.Globalization;
+
     public struct Node
     {
         public Node(int position)

@@ -4,8 +4,7 @@
     {
         public TransitivityRelationsResult Execute(params string[] stringMatrixes)
         {
-            var matrix = new Matrix(stringMatrixes);
-            return matrix.IsTransitive();
+            return new Matrix(stringMatrixes).IsTransitive();
         }
     }
 }

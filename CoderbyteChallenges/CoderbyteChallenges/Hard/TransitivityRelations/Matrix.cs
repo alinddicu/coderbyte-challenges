@@ -8,52 +8,22 @@
     {
         private static readonly string[] RemovableChars = { "(", ")", "," };
 
-        private readonly int[][] _members;
-        private readonly int _size;
+        private readonly int[][] _values;
+        private readonly int _dimension;
         private readonly Node[] _nodes;
         private readonly Connection[] _connections;
         private readonly Transition[] _transitions;
 
         public Matrix(params string[] stringMatrixes)
         {
-            _members = Parse(stringMatrixes);
-            _size = _members.First().Length;
-            _nodes = Enumerable.Range(0, _size).Select(i => new Node(i)).ToArray();
+            _values = ParseForValues(stringMatrixes);
+            _dimension = _values.First().Length;
+            _nodes = Enumerable.Range(0, _dimension).Select(i => new Node(i)).ToArray();
             _connections = SetConnections().ToArray();
             _transitions = SetTransitions().ToArray();
         }
 
-        private IEnumerable<Transition> SetTransitions()
-        {
-            foreach (var connection in _connections.Where(c => !c.Start.Equals(c.End)))
-            {
-                var end =
-                    _connections.FirstOrDefault(
-                        c => c.Start.Equals(connection.End)
-                            && !c.End.Equals(connection.Start)
-                            && !connection.End.Equals(c.End));
-                if (!end.Equals(default(Connection)))
-                {
-                    yield return new Transition(connection.Start, connection.End, end.End);
-                }
-            }
-        }
-
-        private IEnumerable<Connection> SetConnections()
-        {
-            foreach (var node in _nodes)
-            {
-                for (var j = 0; j < _size; j++)
-                {
-                    if (_members[node.Position][j] == 1)
-                    {
-                        yield return new Connection(node, new Node(j));
-                    }
-                }
-            }
-        }
-
-        private static int[][] Parse(params string[] stringMatrixes)
+        private static int[][] ParseForValues(params string[] stringMatrixes)
         {
             return stringMatrixes
                 .Select(
@@ -63,6 +33,36 @@
                         .Select(int.Parse)
                         .ToArray())
                  .ToArray();
+        }
+
+        private IEnumerable<Connection> SetConnections()
+        {
+            foreach (var node in _nodes)
+            {
+                for (var j = 0; j < _dimension; j++)
+                {
+                    if (_values[node.Position][j] == 1)
+                    {
+                        yield return new Connection(node, new Node(j));
+                    }
+                }
+            }
+        }
+
+        private IEnumerable<Transition> SetTransitions()
+        {
+            foreach (var connection in _connections.Where(c => !c.Start.Equals(c.End)))
+            {
+                var transitionEnd =
+                    _connections.FirstOrDefault(
+                        c => c.Start.Equals(connection.End)
+                            && !c.End.Equals(connection.Start)
+                            && !connection.End.Equals(c.End));
+                if (!transitionEnd.Equals(default(Connection)))
+                {
+                    yield return new Transition(connection.Start, connection.End, transitionEnd.End);
+                }
+            }
         }
 
         public TransitivityRelationsResult IsTransitive()

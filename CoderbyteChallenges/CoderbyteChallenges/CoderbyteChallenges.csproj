@@ -99,8 +99,13 @@
     <Compile Include="Easy\SimpleAddingTest.cs" />
     <Compile Include="Easy\SimpleSymbols.cs" />
     <Compile Include="Easy\SimpleSymbolsTest.cs" />
-    <Compile Include="Hard\TransitivityRelations.cs" />
-    <Compile Include="Hard\TransitivityRelationsTest.cs" />
+    <Compile Include="Hard\TransitivityRelations\Connection.cs" />
+    <Compile Include="Hard\TransitivityRelations\Matrix.cs" />
+    <Compile Include="Hard\TransitivityRelations\Node.cs" />
+    <Compile Include="Hard\TransitivityRelations\Transition.cs" />
+    <Compile Include="Hard\TransitivityRelations\TransitivityRelations.cs" />
+    <Compile Include="Hard\TransitivityRelations\TransitivityRelationsResult.cs" />
+    <Compile Include="Hard\TransitivityRelations\TransitivityRelationsTest.cs" />
     <Compile Include="Medium\BinaryConverter.cs" />
     <Compile Include="Medium\BinaryConverterTest.cs" />
     <Compile Include="Medium\CaesarCipher.cs" />
